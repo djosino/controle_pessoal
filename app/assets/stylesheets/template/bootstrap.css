@@ -1971,8 +1971,8 @@ table th[class*="span"],
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../font/fontawesome-webfont.eot?v=3.2.1');
-  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  src: url('/font/fontawesome-webfont.eot?v=3.2.1');
+  src: url('/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('/font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -6277,7 +6277,7 @@ body {
 }
 body:after {
   content: "";
-  background-image: url("../img/pattern.png");
+  background-image: url("/images/pattern.png");
   opacity: 0.27;
   top: 0;
   left: 0;
