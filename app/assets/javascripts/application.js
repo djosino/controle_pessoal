@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require js/charts/excanvas.min.js
+//= require js/charts/jquery.flot.js
+//= require js/jquery.jpanelmenu.min.js
+//= require js/jquery.cookie.js
+//= require js/avocado-custom-predom.js
+// require_tree .
+
+

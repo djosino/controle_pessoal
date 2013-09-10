@@ -1,0 +1,519 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title Controle Pessoal
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    / Styles
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    / JavaScript/jQuery, Pre-DOM
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+
+    / HTML5, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = csrf_meta_tags
+
+
+  %body
+    / Top Fixed Bar
+    .navbar.navbar-inverse.navbar-fixed-top
+      / Top Fixed Bar: Navbar Inner
+      .navbar-inner
+        / Top Fixed Bar: Container
+        .container
+          / Mobile Menu Button
+          %a{:href => "#"}
+            %button.btn.btn-navbar.mobile-menu{:type => "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+          / / Mobile Menu Button
+          / / Logo / Brand Name
+          %a.brand{:href => "#"}
+            %i.icon-leaf
+            Avocado
+            %b Panel
+          / / Logo / Brand Name
+          / User Navigation
+          %ul.nav.pull-right
+            / User Navigation: Notifications
+            %li.dropdown
+              / User Navigation: Notifications Link
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-align-justify.icon-white
+                %span.hidden-phone Notifications
+                %span.badge.badge-inverse 16
+              / / User Navigation: Notifications Link
+              / User Navigation: Notifications Dropdown
+              %ul.dropdown-menu.widget
+                / User Navigation: Notifications Top
+                %li
+                  / User Navigation: Notifications Add News
+                  %a.send{:href => "#", :rel => "tooltip", :title => "Add News"}
+                    %i.icon-edit
+                  / / User Navigation: Notifications Add News
+                  / User Navigation: Notifications Header
+                  %h2
+                    %i.icon-align-justify
+                    Notifications
+                    %span.badge.badge-light.small 16
+                  / / User Navigation: Notifications Header
+                / / User Navigation: Notifications Top
+                / User Navigation: Notifications Item
+                %li
+                  %a.note{:href => "#"}
+                    %small 1 hour ago
+                    %p
+                      %i.icon-edit
+                      %b You
+                      added
+                      %b We´ve launched!
+                / / User Navigation: Notifications Item
+                / User Navigation: Notifications Item
+                %li
+                  %a.note{:href => "#"}
+                    %small 6 hour ago
+                    %p
+                      %i.icon-edit
+                      %b You
+                      added
+                      %b Some changes
+                / / User Navigation: Notifications Item
+                / User Navigation: Notifications Item
+                %li
+                  %a.note{:href => "#"}
+                    %small 12 hour ago
+                    %p
+                      %i.icon-envelope
+                      %b Jason
+                      sendt you a message
+                / / User Navigation: Notifications Item
+                / User Navigation: Notifications Item
+                %li
+                  %a.note{:href => "#"}
+                    %small 15 hour ago
+                    %p
+                      %i.icon-user
+                      %b Kate
+                      added you as friend
+                / / User Navigation: Notifications Item
+                / User Navigation: Notifications View All
+                %li
+                  %a.text-center{:href => "#"}
+                    %i.icon-inbox
+                    View All Notifications
+                / / User Navigation: Notifications View All
+              / / User Navigation: Notifications Dropdown
+            / / User Navigation: Notifications
+            / User Navigation: Messages
+            %li.dropdown
+              / User Navigation: Messages Link
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-envelope.icon-white
+                %span.hidden-phone Messages
+                %span.badge.badge-inverse 5
+              / / User Navigation: Messages Link
+              / / User Navigation: Messages Dropdown
+              %ul.dropdown-menu.widget
+                / User Navigation: Messages Top
+                %li
+                  / User Navigation: Messages New Message
+                  %a.send{:href => "#", :rel => "tooltip", :title => "New Message"}
+                    %i.icon-edit
+                  / / User Navigation: Messages New Message
+                  / User Navigation: Messages Header
+                  %h2
+                    %i.icon-envelope
+                    Messages
+                    %span.badge.badge-light.small 6
+                  / / User Navigation: Messages Header
+                / / User Navigation: Messages Top
+                / User Navigation: Messages Message
+                %li
+                  %a.message{:href => "#"}
+                    %small 1 hour ago
+                    %h3
+                      %i.icon-user
+                      Jason
+                    %p Keep up the work!
+                / / User Navigation: Messages Message
+                / User Navigation: Messages Message
+                %li
+                  %a.message{:href => "#"}
+                    %small 3 hour ago
+                    %h3
+                      %i.icon-user
+                      Janika
+                    %p Did you update that thing?
+                / / User Navigation: Messages Message
+                / User Navigation: Messages View All Messages
+                %li
+                  %a.text-center{:href => "#"}
+                    %i.icon-inbox
+                    View All Messages
+                / / User Navigation: Messages View All Messages
+              / / User Navigation: Messages Dropdown
+            / / User Navigation: Messages
+            / User Navigation: User
+            %li.dropdown
+              / User Navigation: User Link
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-user.icon-white
+                %span.hidden-phone Janika
+              / / User Navigation: User Link
+              / User Navigation: User Dropdown
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"}
+                    %i.icon-user
+                    Profile
+                %li
+                  %a{"data-toggle" => "modal", :href => "#settings"}
+                    %i.icon-cog
+                    Settings
+                %li
+                  %a{"data-toggle" => "modal", :href => "#messages"}
+                    %i.icon-envelope
+                    Messages
+                %li.divider
+                %li
+                  %a{:href => "#"}
+                    %i.icon-off
+                    Logout
+              / / User Navigation: User Dropdown
+            / / User Navigation: User
+          / / User Navigation
+        / / Top Fixed Bar: Container
+      / / Top Fixed Bar: Navbar Inner
+      / Top Fixed Bar: Breadcrumb
+      .breadcrumb.clearfix
+        / Top Fixed Bar: Breadcrumb Container
+        .container
+          / Top Fixed Bar: Breadcrumb Location
+          %ul.pull-left
+            %li
+              %a{:href => "#"}
+                %i.icon-home
+                Home
+              %span.divider /
+            %li.active
+              %a{:href => "#"}
+                %i.icon-align-justify
+                Dashboard
+          / / Top Fixed Bar: Breadcrumb Location
+          / Top Fixed Bar: Breadcrumb Right Navigation
+          %ul.pull-right
+            / Top Fixed Bar: Breadcrumb Theme
+            %li.dropdown
+              / Top Fixed Bar: Breadcrumb Theme Link
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-cog
+                Theme
+              / Top Fixed Bar: Breadcrumb Theme Dropdown
+              %ul#theme.dropdown-menu
+                %li
+                  %a.active{"data-style" => "avocado", :href => "#"}
+                    %i.icon-circle
+                    Avocado
+                %li
+                  %a{"data-style" => "strawberry", :href => "#"}
+                    %i.icon-circle
+                    Strawberry
+                %li
+                  %a{"data-style" => "blueberry", :href => "#"}
+                    %i.icon-circle
+                    Blueberry
+                %li
+                  %a{"data-style" => "azalea", :href => "#"}
+                    %i.icon-circle
+                    Azalea
+                %li
+                  %a{"data-style" => "tangerine", :href => "#"}
+                    %i.icon-circle
+                    Tangerine
+              / / Top Fixed Bar: Breadcrumb Theme Dropdown
+            / / Top Fixed Bar: Breadcrumb Theme
+            %li
+              %a{:href => "login.html"}
+                %i.icon-off
+                Logout
+          / / Top Fixed Bar: Breadcrumb Right Navigation
+        / / Top Fixed Bar: Breadcrumb Container
+      / / Top Fixed Bar: Breadcrumb
+    / / Top Fixed Bar
+    / Moldule: Settings
+    #settings.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel
+          %i.icon-cog
+          Account settings
+      .modal-body
+        %form.form-horizontal
+          .control-group
+            %label.control-label{:for => "inputName"}
+              %i.icon-user
+              Name
+            .controls
+              %input#inputName{:placeholder => "Name", :type => "text"}
+          .control-group
+            %label.control-label{:for => "inputUsername"}
+              %i.icon-user
+              Username
+            .controls
+              %input#inputUsername{:placeholder => "Username", :type => "text"}
+          .control-group
+            %label.control-label{:for => "inputPassword"}
+              %i.icon-key
+              Password
+            .controls
+              %input#inputPassword{:placeholder => "Password", :type => "password"}
+          .control-group
+            %label.control-label{:for => "inputRepeat"}
+              %i.icon-key
+              Repeat Password
+            .controls
+              %input#inputRepeat{:placeholder => "Password", :type => "password"}
+          .control-group
+            %label.control-label{:for => "inputEmail"}
+              %i.icon-envelope
+              Email
+            .controls
+              %input#inputEmail{:placeholder => "Email", :type => "text"}
+          .control-group
+            %label.control-label{:for => "inputWebsite"}
+              %i.icon-home
+              Website
+            .controls
+              %input#inputUsername{:placeholder => "Website", :type => "text"}
+      .modal-footer
+        %button.btn.btn-primary Save changes
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    / / Module: Settings
+    / Module: Messages
+    #messages.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel
+          %i.icon-comment
+          Messages
+      .modal-body.no-padding
+        .list-widget
+          .item
+            %small.pull-right 2 hours ago
+            %h3
+              %i.icon-user
+              Kasper
+              %span.label admin
+            %p This panel is so cool!
+          .item
+            %small.pull-right 6 hours ago
+            %h3
+              %i.icon-user
+              Janika
+              %span.label admin
+            %p Look at this stuff I made!
+          .item
+            %small.pull-right 8 hours ago
+            %h3
+              %i.icon-user
+              Janika
+              %span.label admin
+            %p I'll make this admin panel holy as swiss cheese.
+      .modal-footer
+        %a.btn.btn-primary{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#newmessage"} New mesaage
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    / / Module: Messages
+    / Module: New Messages
+    #newmessage.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel
+          %i.icon-comment
+          New Message
+      .modal-body
+        .control-group
+          %label.control-label{:for => "inputName"}           .controls
+          %input#inputName{:placeholder => "Recipient", :type => "text"}
+        / Textarea
+        .btn-toolbar{"data-role" => "editor-toolbar", "data-target" => "#editor"}
+          .btn-group
+            %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :title => "Font"}
+              %i.icon-font
+              %b.caret
+            %ul.dropdown-menu
+          .btn-group
+            %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :title => "Font Size"}
+              %i.icon-text-height>
+              \&nbsp;
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{"data-edit" => "fontSize 5"}
+                  %font{:size => "5"} Huge
+              %li
+                %a{"data-edit" => "fontSize 3"}
+                  %font{:size => "3"} Normal
+              %li
+                %a{"data-edit" => "fontSize 1"}
+                  %font{:size => "1"} Small
+          .btn-group
+            %a.btn{"data-edit" => "bold", :title => "Bold (Ctrl/Cmd+B)"}
+              %i.icon-bold
+            %a.btn{"data-edit" => "italic", :title => "Italic (Ctrl/Cmd+I)"}
+              %i.icon-italic
+            %a.btn{"data-edit" => "strikethrough", :title => "Strikethrough"}
+              %i.icon-strikethrough
+            %a.btn{"data-edit" => "underline", :title => "Underline (Ctrl/Cmd+U)"}
+              %i.icon-underline
+          .btn-group
+            %a#pictureBtn.btn{:title => "Insert picture (or just drag & drop)"}
+              %i.icon-picture
+            %input{"data-edit" => "insertImage", "data-role" => "magic-overlay", "data-target" => "#pictureBtn", :type => "file"}/
+        #sendmessage
+        / /Textarea
+      .modal-footer
+        %button.btn.btn-primary Send Message
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    / / Module: New Messages
+    / Content Container
+    .container
+      / Main Navigation: Box
+      #nav.navbar.navbar-inverse
+        / Main Navigation: Inner
+        .navbar-inner
+          / Main Navigation: Nav
+          %ul.nav
+            / Main Navigation: Dashboard
+            %li.active
+              %a{:href => "index.html"}
+                %i.icon-align-justify
+                Dashboard
+            / / Main Navigation: Dashboard
+            / Main Navigation: General
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-th
+                General
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "grid.html"}
+                    %i.icon-th
+                    Grid
+                %li
+                  %a{:href => "icons.html"}
+                    %i.icon-circle
+                    Icons
+                %li
+                  %a{:href => "typography.html"}
+                    %i.icon-font
+                    Typography
+                %li
+                  %a{:href => "buttons.html"}
+                    %i.icon-circle-blank
+                    Buttons
+            / / Main Navigation: General
+            / Main Navigation: UI Elements
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-magic
+                UI Elements
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "forms.html"}
+                    %i.icon-check
+                    Forms
+                %li
+                  %a{:href => "wysiwyg.html"}
+                    %i.icon-edit
+                    WYSIWYG
+                %li
+                  %a{:href => "tabs.html"}
+                    %i.icon-th-large
+                    Tabs / Accordion
+            / / Main Navigation: UI Elements
+            / Main Navigation: Components
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-th-large
+                Components
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "calendar.html"}
+                    %i.icon-calendar
+                    Calendar
+                %li
+                  %a{:href => "maps.html"}
+                    %i.icon-map-marker
+                    Maps
+                %li
+                  %a{:href => "tables.html"}
+                    %i.icon-table
+                    Tables
+                %li
+                  %a{:href => "charts.html"}
+                    %i.icon-bar-chart
+                    Charts
+                %li
+                  %a{:href => "login.html"}
+                    %i.icon-key
+                    Login
+                %li.dropdown-submenu
+                  %a{:href => "#"}
+                    %i.icon-signin
+                    Sub-Menu
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "#"}
+                        %i.icon-signout
+                        This
+                    %li
+                      %a{:href => "#"}
+                        %i.icon-sitemap
+                        Is
+                    %li
+                      %a{:href => "#"}
+                        %i.icon-share-alt
+                        An
+                    %li
+                      %a{:href => "#"}
+                        %i.icon-reorder
+                        Example
+            / / Main Navigation: Components
+            / Main Navigation: Gallery
+            %li
+              %a{:href => "gallery.html"}
+                %i.icon-picture
+                Gallery
+            / / Main Navigation: Gallery
+          / / Main Navigation: Nav
+          / Main Navigation: Search
+          %form.navbar-search.pull-right
+            %input.search-query.typeahead{:placeholder => "Search", :type => "text"}
+          / / Main Navigation: Search
+        / / Main Navigation: Inner
+      / / Main Navigation: Box
+      / Alert
+      .alert.alert-light
+        %a.close{"data-dismiss" => "alert"} &times;
+        %i.icon-comment
+        Welcome back,
+        = succeed "." do
+          %b Janika
+        We have missed you!
+      / / Alert
+      %ul
+        %li
+          = link_to 'novo lancamento', new_lancamento_path
+      %p.notice= notice
+      %p.alert= alert
+      = yield
+
+
+  = javascript_include_tag "application-footer", "data-turbolinks-track" => true
