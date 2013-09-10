@@ -34,8 +34,8 @@
           / / Logo / Brand Name
           %a.brand{:href => "#"}
             %i.icon-leaf
-            Avocado
-            %b Panel
+            Controle
+            %b Pessoal
           / / Logo / Brand Name
           / User Navigation
           %ul.nav.pull-right
@@ -108,55 +108,6 @@
                 / / User Navigation: Notifications View All
               / / User Navigation: Notifications Dropdown
             / / User Navigation: Notifications
-            / User Navigation: Messages
-            %li.dropdown
-              / User Navigation: Messages Link
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %i.icon-envelope.icon-white
-                %span.hidden-phone Messages
-                %span.badge.badge-inverse 5
-              / / User Navigation: Messages Link
-              / / User Navigation: Messages Dropdown
-              %ul.dropdown-menu.widget
-                / User Navigation: Messages Top
-                %li
-                  / User Navigation: Messages New Message
-                  %a.send{:href => "#", :rel => "tooltip", :title => "New Message"}
-                    %i.icon-edit
-                  / / User Navigation: Messages New Message
-                  / User Navigation: Messages Header
-                  %h2
-                    %i.icon-envelope
-                    Messages
-                    %span.badge.badge-light.small 6
-                  / / User Navigation: Messages Header
-                / / User Navigation: Messages Top
-                / User Navigation: Messages Message
-                %li
-                  %a.message{:href => "#"}
-                    %small 1 hour ago
-                    %h3
-                      %i.icon-user
-                      Jason
-                    %p Keep up the work!
-                / / User Navigation: Messages Message
-                / User Navigation: Messages Message
-                %li
-                  %a.message{:href => "#"}
-                    %small 3 hour ago
-                    %h3
-                      %i.icon-user
-                      Janika
-                    %p Did you update that thing?
-                / / User Navigation: Messages Message
-                / User Navigation: Messages View All Messages
-                %li
-                  %a.text-center{:href => "#"}
-                    %i.icon-inbox
-                    View All Messages
-                / / User Navigation: Messages View All Messages
-              / / User Navigation: Messages Dropdown
-            / / User Navigation: Messages
             / User Navigation: User
             %li.dropdown
               / User Navigation: User Link
@@ -499,20 +450,6 @@
           / / Main Navigation: Search
         / / Main Navigation: Inner
       / / Main Navigation: Box
-      / Alert
-      .alert.alert-light
-        %a.close{"data-dismiss" => "alert"} &times;
-        %i.icon-comment
-        Welcome back,
-        = succeed "." do
-          %b Janika
-        We have missed you!
-      / / Alert
-      %ul
-        %li
-          = link_to 'novo lancamento', new_lancamento_path
-      %p.notice= notice
-      %p.alert= alert
       = yield
 
 
