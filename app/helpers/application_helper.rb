@@ -17,10 +17,5 @@ module ApplicationHelper
        end
     end
     return ( render :inline => msg )
-
-
-    <div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a><i class='icon icon-warning-sign'></i>
-    
-
   end
 end

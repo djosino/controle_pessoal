@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require template/chosen.css
- *= require template/bootstrap.min.css
+ *= require template/bootstrap.css
  *= require template/theme/avocado.css
  *= require template/prism.css
  *= require template/fullcalendar.css
