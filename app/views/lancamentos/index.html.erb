@@ -1,0 +1,38 @@
+<h1>Listing lancamentos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data vencimento</th>
+      <th>Data pagamento</th>
+      <th>Valor</th>
+      <th>Tipo lancamento</th>
+      <th>Categoria</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lancamentos.each do |lancamento| %>
+      <tr>
+        <td><%= lancamento.data_vencimento.to_s_br %></td>
+        <td><%= lancamento.data_pagamento.to_s_br %></td>
+        <td><%= lancamento.valor %></td>
+        <td><%= lancamento.tipo_lancamento.descricao %></td>
+        <td><%= lancamento.categoria.descricao %></td>
+        <td><%= lancamento.user.email %></td>
+        <td><%= lancamento.created_at.to_s_br %> </td>
+        <td><%= link_to 'Visualizar', lancamento %></td>
+        <td><%= link_to 'Editar', edit_lancamento_path(lancamento) %></td>
+        <td><%= link_to 'Remover', lancamento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lancamento', new_lancamento_path %>

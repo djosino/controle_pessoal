@@ -1,0 +1,31 @@
+<%= form_for(@lancamento) do |f| %>
+  <%= flash_message(@lancamento) %>
+
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :data_vencimento %><br>
+    <%= f.date_select :data_vencimento %>
+  </div>
+  <div class="field">
+    <%= f.label :data_pagamento %><br>
+    <%= f.date_select :data_pagamento %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br>
+    <%= f.text_field :valor %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_lancamento_id %><br>
+    <%= f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :categoria_id %><br>
+    <%= f.collection_select :categoria_id, @categorias, :id, :descricao %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

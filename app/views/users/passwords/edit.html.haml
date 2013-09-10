@@ -1,0 +1,36 @@
+%section.section-wrapper.posts-w
+  .container
+    .row
+      .span12
+        .row
+          .span6
+            .white-card.extra-padding
+              = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+                = f.hidden_field :reset_password_token
+                .row
+                  .span5
+                    %legend Atualize sua senha
+                    = devise_error_messages! 
+                    - if alert
+                      .alert.alert-error
+                        = alert
+                    - if notice
+                      .alert.alert-warning
+                        = notice 
+                    .span3
+                      .control-group
+                        = f.label :password, "Nova Senha" 
+                        = f.password_field :password, :autofocus => true , :require => true ,:class => "span3"
+                      .control-group
+                        = f.label :password_confirmation, "Confirme a Senha" 
+                        = f.password_field :password_confirmation, :require => true , :class => "span3"
+                          
+                      %div(style='float: right')
+                        = render "users/shared/links" 
+
+                      .control-group
+                        = f.submit "Atualizar Senha", :class => "btn btn-primary"
+
+
+          
+  

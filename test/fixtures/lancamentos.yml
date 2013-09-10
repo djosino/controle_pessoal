@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  data_vencimento: 2013-09-10
+  data_pagamento: 2013-09-10
+  valor: 1.5
+  tipo_lancamento_id: 1
+  categoria_id: 1
+  user_id: 1
+
+two:
+  data_vencimento: 2013-09-10
+  data_pagamento: 2013-09-10
+  valor: 1.5
+  tipo_lancamento_id: 1
+  categoria_id: 1
+  user_id: 1
