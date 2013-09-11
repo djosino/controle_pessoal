@@ -33,3 +33,8 @@
                 %td.center 
                   = lancamento.valor
         #DataTables_Table_0_paginate.dataTables_paginate.paging_two_button
+    .actions
+      .float-left 
+        = link_to "Inicial", '/', :class => 'btn'
+      .float-right
+        = link_to "Cadastrar", new_lancamento_path, :class => 'btn btn-primary'
