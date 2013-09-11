@@ -134,6 +134,9 @@
   position: absolute;
   left: -9999px;
 }
+.chosen-container.chosen-container-single.chosen-container-single-nosearch {
+  width: 80px !important;
+}
 
 /* @end */
 /* @group Results */

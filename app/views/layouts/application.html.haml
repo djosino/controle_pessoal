@@ -41,14 +41,14 @@
           %ul.nav.pull-right
             = render 'partials/notifications'
             / User Navigation: User
-            %li.dropdown2
+            %li.dropdown
               / User Navigation: User Link
-              %a.dropdown2-toggle{"data-toggle" => "dropdown2", :href => "#"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 %i.icon-user.icon-white
                 %span.hidden-phone Janika
               / / User Navigation: User Link
-              / User Navigation: User dropdown2
-              %ul.dropdown2-menu
+              / User Navigation: User Dropdown
+              %ul.dropdown-menu
                 %li
                   %a{:href => "#"}
                     %i.icon-user
@@ -66,7 +66,7 @@
                   %a{:href => "/users/logout"}
                     %i.icon-off
                     Logout
-              / / User Navigation: User dropdown2
+              / / User Navigation: User Dropdown
             / / User Navigation: User
           / / User Navigation
         / / Top Fixed Bar: Container
@@ -196,12 +196,12 @@
                 Principal
             / / Main Navigation: Dashboard
             / Main Navigation: General
-            %li{:class => controller_name == 'lancamentos' ? 'dropdown2 active' : 'dropdown2'}
-              %a.dropdown2-toggle{"data-toggle" => "dropdown2", :href => "#"}
+            %li{:class => controller_name == 'lancamentos' ? 'dropdown active' : 'dropdown'}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 %i.icon-th
                 Lançamentos
                 %b.caret
-              %ul.dropdown2-menu
+              %ul.dropdown-menu
                 %li
                   %a{:href => lancamentos_path}
                     %i.icon-list
@@ -210,12 +210,12 @@
                   %a{:href => new_lancamento_path}
                     %i.icon-collapse-top
                     Cadastrar
-            %li{:class => controller_name == 'lancamentos' ? 'dropdown2 active' : 'dropdown2'}
-              %a.dropdown2-toggle{"data-toggle" => "dropdown2", :href => "#"}
+            %li{:class => controller_name == 'lancamentos' ? 'dropdown active' : 'dropdown'}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 %i.icon-th
                 Lançamentos
                 %b.caret
-              %ul.dropdown2-menu
+              %ul.dropdown-menu
                 %li
                   %a{:href => lancamentos_path}
                     %i.icon-list
@@ -232,8 +232,8 @@
       = yield
 
   :javascript
-    // Meu dropdown2 
-    $(".dropdown2").bind("click", function(){ 
+    // Meu DROPDown 
+    $(".dropdown").bind("click", function(){ 
       $(this).className +=' open';
     });
   = javascript_include_tag "application-footer", "data-turbolinks-track" => true
