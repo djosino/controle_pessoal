@@ -71,7 +71,7 @@ class LancamentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lancamento_params
-      params.require(:lancamento).permit(:data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id)
+      params.require(:lancamento).permit(:descricao, :data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id)
     end
 
     def get_selects

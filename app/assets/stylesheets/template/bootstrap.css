@@ -1017,7 +1017,7 @@ input[type="file"] {
   line-height: 30px;
 }
 select {
-  width: 220px;
+  width: 254px;
   border: 1px solid #cccccc;
   background-color: #ffffff;
 }
@@ -7051,7 +7051,7 @@ a:focus {
 [class^="icon-"],
 [class*=" icon-"] {
   margin-top: -1px;
-  padding-right: 5px;
+  /*padding-right: 5px;*/
 }
 .page-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);

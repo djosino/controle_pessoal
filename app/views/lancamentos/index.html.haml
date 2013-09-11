@@ -1,0 +1,42 @@
+.row-fluid
+  / Pie: Box
+  .span12
+    / Pie: Top Bar
+    .top-bar
+      %h3
+        %i.icon-eye-open
+        Lista de Lançamentos
+
+    / / Pie: Top Bar
+    / Pie: Content
+    .well.no-padding
+      #DataTables_Table_0_wrapper.dataTables_wrapper{:role => "grid"}
+        %table#DataTables_Table_0.data-table.dataTable{"aria-describedby" => "DataTables_Table_0_info"}
+          %thead
+            %tr{:role => "row"}
+              %th.sorting_asc{"aria-controls" => "DataTables_Table_0", "aria-label" => "Rendering engine: activate to sort column descending", "aria-sort" => "ascending", :colspan => "1", :role => "columnheader", :rowspan => "1", :style => "width: 229px;", :tabindex => "0"} Descrição
+              %th.sorting{"aria-controls" => "DataTables_Table_0", "aria-label" => "Browser: activate to sort column ascending", :colspan => "1", :role => "columnheader", :rowspan => "1", :style => "width: 310px;", :tabindex => "0"} Tipo Lançamento
+              %th.sorting{"aria-controls" => "DataTables_Table_0", "aria-label" => "Platform(s): activate to sort column ascending", :colspan => "1", :role => "columnheader", :rowspan => "1", :style => "width: 281px;", :tabindex => "0"} Categoria
+              %th.center.sorting{"aria-controls" => "DataTables_Table_0", "aria-label" => "Engine version: activate to sort column ascending", :colspan => "1", :role => "columnheader", :rowspan => "1", :style => "width: 172px;", :tabindex => "0"} Usuario
+              %th.center.sorting{"aria-controls" => "DataTables_Table_0", "aria-label" => "CSS grade: activate to sort column ascending", :colspan => "1", :role => "columnheader", :rowspan => "1", :style => "width: 138px;", :tabindex => "0"} Valor
+          %tfoot
+            %tr
+              %th{:colspan => "1", :rowspan => "1"} Rendering engine
+              %th{:colspan => "1", :rowspan => "1"} Browser
+              %th{:colspan => "1", :rowspan => "1"} Platform(s)
+              %th.center{:colspan => "1", :rowspan => "1"} Engine version
+              %th.center{:colspan => "1", :rowspan => "1"} CSS grade
+          %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
+            - @lancamentos.each do |lancamento|
+              %tr.gradeA.odd
+                %td.sorting_1 
+                  = lancamento.descricao
+                %td 
+                  = lancamento.tipo_lancamento.descricao
+                %td
+                  = lancamento.categoria.descricao
+                %td.center
+                  = lancamento.user.email
+                %td.center 
+                  = lancamento.valor
+        #DataTables_Table_0_paginate.dataTables_paginate.paging_two_button
