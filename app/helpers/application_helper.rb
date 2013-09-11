@@ -18,4 +18,20 @@ module ApplicationHelper
     end
     return ( render :inline => msg )
   end
+
+  def edit_icon
+     return image_tag('<i class="icon-calendar"></i>',:title => 'Editar')
+  end
+
+  def show_icon
+     return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/finder.png',:title => 'Visualizar')
+  end
+
+  def delete_icon
+     return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/cross.png',:title => 'Remover')
+  end
+
+  def config_icon
+     return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/document-pdf-text.png',:title => 'PDF Text')
+  end
 end

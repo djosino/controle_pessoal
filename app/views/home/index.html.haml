@@ -1,0 +1,140 @@
+.container
+  / Main Navigation: Box
+  
+  .alert.alert-light
+    %a.close{"data-dismiss" => "alert"} ×
+    %i.icon-comment
+    Welcome back,
+    = succeed "." do
+      %b Janika
+    We have missed you!
+  / / Alert
+  / Information Boxes
+  .row-fluid
+    / Information Boxes: Users Registered
+    .span3.well.infobox
+      %i.icon-6x.icon-tags
+      .pull-right.text-right
+        Lançamentos
+        %br
+          %b.huge 70
+          %br
+            %span.caps.muted Today
+    / / Information Boxes: Users Registered
+    / Information Boxes: Active Users
+    .span3.well.infobox
+      %i.icon-6x.icon-arrow-up
+      .pull-right.text-right
+        Subscribers
+        %br
+          %b.huge 3432
+          %br
+            %span.caps.muted +25 Today
+    / / Information Boxes: Active Users
+    / Information Boxes: Images
+    .span3.well.infobox
+      %i.icon-6x.icon-arrow-down
+      .pull-right.text-right
+        Images
+        %br
+          %b.huge 4343
+          %br
+            %span.caps.muted +5 Today
+    / / Information Boxes: Images
+    / Information Boxes: Applications
+    .span3.well.infobox
+      %i.icon-6x.icon-bar-chart
+      .pull-right.text-right
+        Applications
+        %br
+          %b.huge 34
+          %br
+            %span.caps.muted Installed
+    / / Information Boxes: Applications
+  / / Information Boxes
+  / Site Traffic and Pie
+  .row-fluid
+    / Site Traffic: Box
+    .span8
+      / Site Traffic: Top Bar
+      .top-bar{:style => "padding-left: 0px;"}
+        %ul.tab-container
+          %li.active
+            %a{:href => "#tab-traffic"}
+              %i.icon-bar-chart
+              Site Traffic
+          %li
+            %a{:href => "#tab-server"}
+              %i.icon-cogs
+              Server Status
+        %div
+          %a.top-bar-minimize{"data-original-title" => "Minimize", :href => "#", :rel => "tooltip", :title => ""}
+            %i.icon-resize-small
+      / / Site Traffic: Top Bar
+      / Site Traffic: Content
+      .well
+        .tab-content
+          #tab-traffic.tab-pane.active
+            .progress.progress-mini
+              .bar{:style => "width: 15%;"}
+            .alert.alert-info
+              %button.close{"data-dismiss" => "alert", :type => "button"} ×
+              %i.icon-bolt
+              %b Last Update
+              Traffic was last updated 3 hours ago.
+            .graph.chart1{:style => "padding: 0px;"}
+              %canvas.flot-base{:height => "240", :style => "width: 730px; height: 240px;", :width => "730"}
+              %canvas.flot-overlay{:height => "240", :style => "width: 730px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "730"}
+          #tab-server.tab-pane
+            .progress.progress-danger.progress-mini
+              .bar{:style => "width: 98%;"}
+            .alert.alert-error
+              %button.close{"data-dismiss" => "alert", :type => "button"} ×
+              %i.icon-bolt
+              %b Huge Traffic
+              Your server has nearly exceeded the bandwidth limits.
+            .graph.realtimechart{:style => "padding: 0px;"}
+              %canvas.flot-base{:height => "240", :style => "width: 100px; height: 240px;", :width => "100"}
+              %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
+      / / Site Traffic: Content
+    / / Site Traffic: Box
+    / Pie: Box
+    .span4
+      / Pie: Top Bar
+      .top-bar
+        %h3
+          %i.icon-money
+          Earnings
+        %div
+          %a.top-bar-minimize{"data-original-title" => "Minimize", :href => "#", :rel => "tooltip", :title => ""}
+            %i.icon-resize-small
+      / / Pie: Top Bar
+      / Pie: Content
+      .well
+        .alert
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          %i.icon-star
+          %b Income Update
+          Your income has gone up by 74% the last week.
+        .pie.pie1{:style => "padding: 0px;"}
+          %canvas.flot-base{:height => "240", :style => "width: 330px; height: 240px;", :width => "330"}
+          %canvas.flot-overlay{:height => "240", :style => "width: 330px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "330"}
+          .legend
+            %div{:style => "position: absolute; width: 62px; height: 60px; top: 5px; right: 5px; background-color: transparent; opacity: 0.85;"}             
+              %table{:style => "position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454"}
+                %tbody
+                  %tr
+                    %td.legendColorBox
+                      %div{:style => "border:1px solid #ccc;padding:1px"}
+                        %div{:style => "width:4px;height:0;border:5px solid rgb(136,187,200);overflow:hidden"}
+                    %td.legendLabel Expenses
+                  %tr
+                    %td.legendColorBox
+                      %div{:style => "border:1px solid #ccc;padding:1px"}
+                        %div{:style => "width:4px;height:0;border:5px solid rgb(235,129,92);overflow:hidden"}
+                    %td.legendLabel Sales
+                  %tr
+                    %td.legendColorBox
+                      %div{:style => "border:1px solid #ccc;padding:1px"}
+                        %div{:style => "width:4px;height:0;border:5px solid rgb(127,193,141);overflow:hidden"}
+                    %td.legendLabel Bonuses

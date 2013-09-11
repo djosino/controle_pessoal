@@ -5,6 +5,8 @@ class CategoriasController < ApplicationController
   # GET /categorias.json
   def index
     @categorias = Categoria.all
+    @categoria = Categoria.new
+    @tipos_lancamento = TipoLancamento.all
   end
 
   # GET /categorias/1
@@ -28,10 +30,12 @@ class CategoriasController < ApplicationController
 
     respond_to do |format|
       if @categoria.save
-        format.html { redirect_to @categoria, notice: 'Categoria was successfully created.' }
+        format.html { redirect_to categorias_url, notice: 'Categoria criada com sucesso.'  }
         format.json { render action: 'show', status: :created, location: @categoria }
       else
-        format.html { render action: 'new' }
+        @categorias = Categoria.all
+        @tipos_lancamento = TipoLancamento.all
+        format.html { render action: 'index' }
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
       end
     end
@@ -42,9 +46,11 @@ class CategoriasController < ApplicationController
   def update
     respond_to do |format|
       if @categoria.update(categoria_params)
-        format.html { redirect_to @categoria, notice: 'Categoria was successfully updated.' }
+        format.html { redirect_to categorias_url, notice: 'Categoria was successfully updated.' }
         format.json { head :no_content }
       else
+        @categorias = Categoria.all
+        @tipos_lancamento = TipoLancamento.all
         format.html { render action: 'edit' }
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
       end
@@ -69,6 +75,6 @@ class CategoriasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def categoria_params
-      params.require(:categoria).permit(:user_id, :descricao)
+      params.require(:categoria).permit(:user_id, :descricao, :tipo_lancamento_id)
     end
 end

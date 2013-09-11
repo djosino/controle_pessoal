@@ -1,0 +1,16 @@
+.no-margin{
+	margin: 0px;
+}
+.icon16 [class^="icon-"] {
+	font-size: 16px;
+} 
+.container-margin-top{
+	margin-top: 24px;
+}
+.float-left{
+	float: left;
+}
+
+.field_with_errors > input, .field_with_errors > select{
+	border: 1px solid red;
+}

@@ -1,21 +1,66 @@
-%h1 Listing categorias
+.row-fluid
+  .span7.no-margin
+    / Add News: Top Bar
+    
+    .top-bar
+      %h3
+        %i.icon-calendar
+        Lista de Categorias
+    / / Add News: Top Bar
+    / Add News: Content
+    .well
+      / Add News: WYSIWYG Edior
+      %table.table.table-bordered.icon16
+        %thead
+          %tr
+            %th #
+            %th Descriçao
+            %th Tipo Lancamento
+            %th Criação
+            %th(colspan=2) Acoes
+        %tbody
+          - @categorias.each do |categoria|
+            %tr
+              %td= categoria.id
+              %td= categoria.descricao
+              %td= categoria.tipo_lancamento ? categoria.tipo_lancamento.descricao : '--'
+              %td= categoria.created_at.to_s_br
+              %td= link_to '', edit_categoria_path(categoria), :class => "icon-edit", :title => 'Editar' 
+              %td= link_to '', categoria, :method => :delete, :data => { :confirm => 'Tem certeza?' }, :class => "icon-remove", :title => "Deletar"
+  / Forms: Box
+  .span5
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-cog
+        Nova Categoria
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = flash_message(@categoria)
+      / Forms: Form
+      / Forms: Normal input field
+      = form_for(@categoria, :html => {:class => "form-horizontal"}) do |f|
+        .control-group
+          %label.control-label{:for => "inputNormal"}
+            Descrição *
+          .controls
+            .input-prepend.input-append
+              %span.add-on.float-left
+                %i.icon-text-width
+              = f.text_field :descricao
+        .control-group
+          %label.control-label Tipo Lançamento *
+          .controls
+            = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
+        / / Forms: Form Textarea
+        / Forms: Form Actions
+        .form-actions
+          = f.submit "Criar", :class => "btn btn-primary"     
+        / / Forms: Form Actions
+      / / Forms: Form
+    / / Forms: Content
+  / / Forms: Box
+  / Forms: Box
 
-%table
-  %tr
-    %th User
-    %th Descricao
-    %th
-    %th
-    %th
 
-  - @categorias.each do |categoria|
-    %tr
-      %td= categoria.user
-      %td= categoria.descricao
-      %td= link_to 'Show', categoria
-      %td= link_to 'Edit', edit_categoria_path(categoria)
-      %td= link_to 'Destroy', categoria, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Categoria', new_categoria_path

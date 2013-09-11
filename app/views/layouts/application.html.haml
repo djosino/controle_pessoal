@@ -45,7 +45,7 @@
               / User Navigation: User Link
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 %i.icon-user.icon-white
-                %span.hidden-phone Janika
+                %span.hidden-phone Daniel
               / / User Navigation: User Link
               / User Navigation: User Dropdown
               %ul.dropdown-menu
@@ -83,11 +83,14 @@
                 Principal
               %span.divider /
             %li
-              = link_to controller_name.camelize, :controller => controller_name
+              %a{:href => "/lancamentos"}
+                %i.icon-tags
+                Lançamentos
               %span.divider /
             %li.active
-              = link_to action_name.camelize, :controller => controller_name, :action => action_name
-          / / Top Fixed Bar: Breadcrumb Location
+              %a{:href => "/categorias"}
+                %i.icon-folder-open
+                Categorias
           / Top Fixed Bar: Breadcrumb Right Navigation
           %ul.pull-right
             / Top Fixed Bar: Breadcrumb Theme
@@ -175,60 +178,16 @@
             %small.pull-right 8 hours ago
             %h3
               %i.icon-user
-              Janika
+              Daniel
               %span.label admin
             %p I'll make this admin panel holy as swiss cheese.
       .modal-footer
         %a.btn.btn-primary{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#newmessage"} New mesaage
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
     / Content Container
-    .container
+    .container.container-margin-top
       / Main Navigation: Box
-      #nav.navbar.navbar-inverse
-        / Main Navigation: Inner
-        .navbar-inner
-          / Main Navigation: Nav
-          %ul.nav
-            / Main Navigation: Dashboard
-            %li{:class => controller_name == 'home' ? 'active' : ''}
-              %a{:href => "/"}
-                %i.icon-align-justify
-                Principal
-            / / Main Navigation: Dashboard
-            / Main Navigation: General
-            %li{:class => controller_name == 'lancamentos' ? 'dropdown active' : 'dropdown'}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %i.icon-th
-                Lançamentos
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => lancamentos_path}
-                    %i.icon-list
-                    Listagem
-                %li
-                  %a{:href => new_lancamento_path}
-                    %i.icon-collapse-top
-                    Cadastrar
-            %li{:class => controller_name == 'lancamentos' ? 'dropdown active' : 'dropdown'}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %i.icon-th
-                Lançamentos
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => lancamentos_path}
-                    %i.icon-list
-                    Listagem
-                %li
-                  %a{:href => new_lancamento_path}
-                    %i.icon-collapse-top
-                    Cadastrar
-            / / Main Navigation: General
-          / / Main Navigation: Nav
-        / / Main Navigation: Inner
-      / / Main Navigation: Box
-
+      
       = yield
 
   :javascript

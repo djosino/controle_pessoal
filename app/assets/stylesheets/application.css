@@ -16,5 +16,6 @@
  *= require template/fullcalendar.css
  *= require template/fonts-body.css
  *= require template/bootstrap-responsive.css
+ *= require template/custom.css
  * require_tree .
  */
