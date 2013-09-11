@@ -1,6 +1,5 @@
 class Categoria < ActiveRecord::Base
-   belongs_to :user
-   has_many :lancamentos
-
-   default_scope { order(:descricao => :asc) }
+  belongs_to :user
+  belongs_to :tipo_lancamento
+  has_many :lancamentos
 end

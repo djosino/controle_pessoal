@@ -1,4 +1,6 @@
 ControlePessoal::Application.routes.draw do
+  resources :categorias
+
   resources :categoria
 
   resources :lancamentos

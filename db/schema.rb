@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910152204) do
+ActiveRecord::Schema.define(version: 20130911094348) do
 
-  create_table "categoria", force: true do |t|
+  create_table "categorias", force: true do |t|
     t.integer  "user_id"
     t.string   "descricao"
+    t.integer  "tipo_lancamento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "categoria", ["user_id"], name: "index_categoria_on_user_id", using: :btree
+  add_index "categorias", ["tipo_lancamento_id"], name: "index_categorias_on_tipo_lancamento_id", using: :btree
+  add_index "categorias", ["user_id"], name: "index_categorias_on_user_id", using: :btree
 
   create_table "lancamentos", force: true do |t|
     t.string   "descricao"

@@ -1,0 +1,21 @@
+%h1 Listing categorias
+
+%table
+  %tr
+    %th User
+    %th Descricao
+    %th
+    %th
+    %th
+
+  - @categorias.each do |categoria|
+    %tr
+      %td= categoria.user
+      %td= categoria.descricao
+      %td= link_to 'Show', categoria
+      %td= link_to 'Edit', edit_categoria_path(categoria)
+      %td= link_to 'Destroy', categoria, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Categoria', new_categoria_path
