@@ -135,7 +135,7 @@
   left: -9999px;
 }
 .chosen-container.chosen-container-single.chosen-container-single-nosearch {
-  width: 80px !important;
+  min-width: 80px !important;
 }
 
 /* @end */
