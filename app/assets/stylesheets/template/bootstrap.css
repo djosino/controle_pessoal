@@ -9273,16 +9273,16 @@ ul#theme [data-style="tangerine"].active i {
   -moz-box-shadow: 0 1px 0 #ffffff;
   box-shadow: 0 1px 0 #ffffff;
   border-radius: 3px;
-  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
+  /*background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
   /* gradient overlay */
 
-  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
+  /*background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
   /* gradient overlay */
 
-  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
+  /*background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
   /* gradient overlay */
 
-  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
+  /*background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0%, #ffffff 100%);
   /* gradient overlay */
 
 }
