@@ -9,8 +9,8 @@
     / / Forms: Top Bar
     / Forms: Content
     .well.no-padding
+      = flash_message(@lancamento)
       / Forms: Form
-      
       / Forms: Normal input field
       = form_for(@lancamento, :html => {:class => "form-horizontal"}) do |f|
         .control-group
@@ -22,15 +22,15 @@
                 %i.icon-text-width
               = f.text_field :descricao
         .control-group
+          %label.control-label Tipo Lançamento *
+          .controls
+            = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
+        .control-group
           %label.control-label Categoria *
           .controls 
             = f.collection_select :categoria_id, @categorias, :id, :descricao, :prompt => "Selecione..."
         / / Forms: Normal input field
         / Forms: Form Password
-        .control-group
-          %label.control-label Tipo Lançamento *
-          .controls
-            = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
         .control-group
           %label.control-label{:for => "inputPassword"}
             Data venc.
