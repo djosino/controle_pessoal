@@ -1,13 +1,7 @@
 .container
   / Main Navigation: Box
   
-  .alert.alert-light
-    %a.close{"data-dismiss" => "alert"} ×
-    %i.icon-comment
-    Welcome back,
-    = succeed "." do
-      %b Janika
-    We have missed you!
+  = flash_message
   / / Alert
   / Information Boxes
   .row-fluid

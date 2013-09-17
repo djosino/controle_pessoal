@@ -6847,11 +6847,11 @@ a:focus {
   margin: 0;
 }
 .navbar-fixed-top .navbar-inner + .breadcrumb ul li a {
-  color: #999999;
+  color: #555;
   text-decoration: none;
 }
 .navbar-fixed-top .navbar-inner + .breadcrumb ul li a:hover {
-  color: #5c8028;
+  color: #000;
 }
 .navbar-fixed-top .navbar-inner + .breadcrumb li {
   display: inline-block;
@@ -8137,7 +8137,7 @@ div[data-role="editor-toolbar"] {
 .table-striped,
 .table,
 .data-table {
-  color: #8f8f8f;
+  color: #333;
   width: 100%;
 }
 .table-striped th,

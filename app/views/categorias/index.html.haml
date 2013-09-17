@@ -1,15 +1,10 @@
 .row-fluid
   .span7.no-margin
-    / Add News: Top Bar
-    
     .top-bar
       %h3
         %i.icon-calendar
         Lista de Categorias
-    / / Add News: Top Bar
-    / Add News: Content
     .well
-      / Add News: WYSIWYG Edior
       %table.table.table-bordered.icon16
         %thead
           %tr
@@ -25,8 +20,12 @@
               %td= categoria.descricao
               %td= categoria.tipo_lancamento ? categoria.tipo_lancamento.descricao : '--'
               %td= categoria.created_at.to_s_br
-              %td= link_to '', edit_categoria_path(categoria), :class => "icon-edit", :title => 'Editar' 
-              %td= link_to '', categoria, :method => :delete, :data => { :confirm => 'Tem certeza?' }, :class => "icon-remove", :title => "Deletar"
+              %td
+                - if categoria.user_id
+                  = link_to '', edit_categoria_path(categoria), :class => "icon-edit", :title => 'Editar' 
+              %td
+                - if categoria.user_id
+                  = link_to '', categoria, :method => :delete, :data => { :confirm => 'Confirma exclusão da categoria?' }, :class => "icon-remove", :title => "Remover"
   / Forms: Box
   .span5
     / Forms: Top Bar

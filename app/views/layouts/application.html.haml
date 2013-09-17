@@ -45,22 +45,14 @@
               / User Navigation: User Link
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 %i.icon-user.icon-white
-                %span.hidden-phone Daniel
+                %span.hidden-phone= current_user.email.slice(0, current_user.email.index('@')).camelize
               / / User Navigation: User Link
               / User Navigation: User Dropdown
               %ul.dropdown-menu
                 %li
-                  %a{:href => "#"}
-                    %i.icon-user
-                    Profile
-                %li
                   %a{"data-toggle" => "modal", :href => "#settings"}
                     %i.icon-cog
-                    Settings
-                %li
-                  %a{"data-toggle" => "modal", :href => "#messages"}
-                    %i.icon-envelope
-                    Messages
+                    Configurações
                 %li.divider
                 %li
                   %a{:href => "/users/logout"}
@@ -78,7 +70,7 @@
           / Top Fixed Bar: Breadcrumb Location
           %ul.pull-left
             %li
-              %a{:href => "#"}
+              %a{:href => "/"}
                 %i.icon-home
                 Principal
               %span.divider /

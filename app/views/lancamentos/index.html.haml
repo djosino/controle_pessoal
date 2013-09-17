@@ -6,7 +6,6 @@
       %h3
         %i.icon-eye-open
         Lista de Lançamentos
-
     / / Pie: Top Bar
     / Pie: Content
     .well.no-padding
@@ -14,24 +13,23 @@
         %table#DataTables_Table_0.data-table.dataTable{"aria-describedby" => "DataTables_Table_0_info"}
           %thead
             %tr{:role => "row"}
-              %th Descrição
-              %th Tipo Lançamento
+              %th Data Pag.
+              %th Data Venc.
               %th Categoria
-              %th Usuario
+              %th Tipo Lançamento
+              %th Descrição
               %th Valor
+              %th Opções
           %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
             - @lancamentos.each do |lancamento|
               %tr.gradeA.odd
-                %td.sorting_1 
-                  = lancamento.descricao
-                %td 
-                  = lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
-                %td
-                  = lancamento.categoria ? lancamento.categoria.descricao  : '--'
-                %td.center
-                  = lancamento.user.email
-                %td.center 
-                  = lancamento.valor
+                %td= lancamento.data_pagamento  ? lancamento.data_pagamento.to_s_br    : '--'
+                %td= lancamento.data_vencimento ? lancamento.data_vencimento.to_s_br   : '--'
+                %td= lancamento.categoria       ? lancamento.categoria.descricao       : '--'
+                %td= lancamento.descricao
+                %td= lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
+                %td= lancamento.valor
+                %td= link_to 'Editar', edit_lancamento_path(lancamento)
         #DataTables_Table_0_paginate.dataTables_paginate.paging_two_button
     .actions
       .float-left 

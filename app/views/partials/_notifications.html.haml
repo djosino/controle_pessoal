@@ -1,60 +1,41 @@
-/ User Navigation: Notifications
-%li.dropdown
-  / User Navigation: Notifications Link
-  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-    %i.icon-align-justify.icon-white
-    %span.hidden-phone Notifications
-    %span.badge.badge-inverse 16
-  / / User Navigation: Notifications Link
-  / User Navigation: Notifications Dropdown
-  %ul.dropdown-menu.widget
-    / User Navigation: Notifications Top
-    %li
-      / User Navigation: Notifications Option
-      /%a.send{:href => "#", :rel => "tooltip", :title => "Add News"}
-      /  %i.icon-edit
-      / / User Navigation: Notifications Option
-      / User Navigation: Notifications Header
-      %h2
-        %i.icon-align-justify
-        Notificações
-        %span.badge.badge-light.small 5
-      / / User Navigation: Notifications Header
-    / / User Navigation: Notifications Top
-    / User Navigation: Notifications Item
-    %li
-      %a.note{:href => "#"}
-        %small 1 hour ago
-        %p
-          %i.icon-edit
-          %b You
-          added
-          %b We´ve launched!
-    / / User Navigation: Notifications Item
-    / User Navigation: Notifications Item
-    %li
-      %a.note{:href => "#"}
-        %small 6 hour ago
-        %p
-          %i.icon-edit
-          %b You
-          added
-          %b Some changes
-    / / User Navigation: Notifications Item
-    / User Navigation: Notifications Item
-    %li
-      %a.note{:href => "#"}
-        %small 15 hour ago
-        %p
-          %i.icon-user
-          %b Kate
-          added you as friend
-    / / User Navigation: Notifications Item
-    / User Navigation: Notifications View All
-    %li
-      %a.text-center{:href => "#"}
-        %i.icon-inbox
-        View All Notifications
-    / / User Navigation: Notifications View All
-  / / User Navigation: Notifications Dropdown
-/ / User Navigation: Notifications
+- if @notificacoes.any?
+  / User Navigation: Notifications
+  %li.dropdown
+    / User Navigation: Notifications Link
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      %i.icon-align-justify.icon-white
+      %span.hidden-phone Notificações
+      %span.badge.badge-inverse= @notificacoes.size
+    %ul.dropdown-menu.widget
+      %li
+        %h2
+          %i.icon-align-justify
+          Notificações
+          %span.badge.badge-light.small= @notificacoes.size > 5 ? 5 : @notificacoes.size
+
+      - @notificacoes.each do |n|
+        %li
+          %a.note{:href => "#"}
+            %small= n.tempo_de_cadastro
+            %p
+              %i.icon-edit
+              %b= n.texto
+      / / User Navigation: Notifications Item
+      / User Navigation: Notifications Item
+      /%li
+      /  %a.note{:href => "#"}
+      /    %small 6 hour ago
+      /    %p
+      /      %i.icon-edit
+      /      %b You
+      /      added
+      /      %b Some changes
+      / / User Navigation: Notifications Item
+      / User Navigation: Notifications Item
+      %li
+        %a.text-center{:href => "/"}
+          %i.icon-inbox
+          Visualizar todas Notificações
+      / / User Navigation: Notifications View All
+    / / User Navigation: Notifications Dropdown
+  / / User Navigation: Notifications
