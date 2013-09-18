@@ -25,9 +25,9 @@
           %label.control-label Tipo Lançamento *
           .controls
             = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
-        .control-group
+        .control-group#get_categorias
           %label.control-label Categoria *
-          .controls 
+          .controls
             = f.collection_select :categoria_id, @categorias, :id, :descricao, :prompt => "Selecione..."
         / / Forms: Normal input field
         / Forms: Form Password
@@ -67,4 +67,5 @@
   / / Forms: Box
   / Forms: Box
 
+= observe_field('#lancamento_tipo_lancamento_id', '/categorias/por_tipo', 'tipo_lancamento_id', '#lancamento_categoria_id')
 

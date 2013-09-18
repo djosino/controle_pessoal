@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
 
    has_many :categorias
    has_many :lancamentos
+
+    def ultimo_salario
+    	Lancamento.where(["categoria_id = 1 and user_id = ?", self.id]).last
+    end
 end

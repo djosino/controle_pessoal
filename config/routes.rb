@@ -1,7 +1,9 @@
 ControlePessoal::Application.routes.draw do
-  resources :categorias
-
-  resources :categoria
+  resources :categorias do
+    collection do
+      post :por_tipo
+    end
+  end
 
   resources :lancamentos
 

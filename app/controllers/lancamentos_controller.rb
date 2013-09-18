@@ -2,25 +2,27 @@ class LancamentosController < ApplicationController
   before_action :set_lancamento, only: [:show, :edit, :update, :destroy]
   before_action :get_selects, only: [:new, :edit, :update, :create]
 
-  # GET /lancamentos
-  # GET /lancamentos.json
-  def index
-    @lancamentos = Lancamento.all
-  end
+   # GET /lancamentos
+   # GET /lancamentos.json
+   def index
+      lancamento = current_user.ultimo_salario
+      @lancamentos = []
+      @lancamentos = Lancamento.mes_atual(lancamento.id, current_user.id) if lancamento
+   end
 
-  # GET /lancamentos/1
-  # GET /lancamentos/1.json
-  def show
-  end
+   # GET /lancamentos/1
+   # GET /lancamentos/1.json
+   def show
+   end
 
-  # GET /lancamentos/new
-  def new
+   # GET /lancamentos/new
+   def new
     @lancamento = Lancamento.new
-  end
+   end
 
-  # GET /lancamentos/1/edit
-  def edit
-  end
+   # GET /lancamentos/1/edit
+   def edit
+   end
 
   # POST /lancamentos
   # POST /lancamentos.json
@@ -29,7 +31,7 @@ class LancamentosController < ApplicationController
     @lancamento.user = current_user
     respond_to do |format|
       if @lancamento.save
-        format.html { redirect_to @lancamento, notice: 'Lancamento was successfully created.' }
+        format.html { redirect_to '/lancamentos', notice: 'Lancamento was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lancamento }
       else
         format.html { render action: 'new' }
@@ -76,6 +78,6 @@ class LancamentosController < ApplicationController
 
     def get_selects
        @tipos_lancamento = TipoLancamento.all
-       @categorias       = current_user.categorias
+       @categorias       = Categoria.where("user_id = ? or user_id is null", current_user)
     end
 end

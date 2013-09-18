@@ -19,6 +19,25 @@ module ApplicationHelper
     return ( render :inline => msg )
   end
 
+  def observe_field(object, url, with, update)
+    retorno = "<script>"
+    retorno += "var valor = jQuery('#{object}');"
+    retorno += "valor.bind('change', function(){"
+    retorno += "jQuery.ajax({
+                  url: '#{url}',
+                  type: 'POST',
+                  data: {'#{with}' : valor.val()},
+                  dataType: 'html',
+                  success: function(data) {
+                    jQuery('#{update}').html(data);
+                  }
+                });
+              });"
+    retorno += "</script>"
+    return retorno.html_safe
+  end
+
+
   def edit_icon
      return image_tag('<i class="icon-calendar"></i>',:title => 'Editar')
   end

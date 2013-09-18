@@ -17,3 +17,30 @@
 .field_with_errors > input, .field_with_errors > select{
    border: 1px solid red;
 }
+a.in-lancamento{
+   color: #777;
+}
+a.in-lancamento:hover{
+   color: #555;
+}
+a.in-receita{
+   color: #7FC18D;
+}
+a.in-receita:hover{
+   color: #11c18d;
+}
+a.in-despesa{
+   color: #EB815C;
+}
+a.in-despesa:hover{
+   color: #EB6849;
+}
+a.in-saldo{
+   color: #88BBC8;
+}
+a.in-saldo:hover{
+   color: #55AAC8;
+}
+.infobox:hover{
+   background-color: #F9F9F9;
+};

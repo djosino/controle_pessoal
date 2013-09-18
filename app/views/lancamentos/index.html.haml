@@ -14,27 +14,34 @@
         %table#DataTables_Table_0.data-table.dataTable{"aria-describedby" => "DataTables_Table_0_info"}
           %thead
             %tr{:role => "row"}
+              %th #
               %th Descrição
               %th Tipo Lançamento
               %th Categoria
-              %th Usuario
               %th Valor
+              %th Acoes
+              %th 
           %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
             - @lancamentos.each do |lancamento|
               %tr.gradeA.odd
-                %td.sorting_1 
+                %td
+                  = lancamento.data_pagamento ? lancamento.data_pagamento.to_s_br : '--'
+                %td 
                   = lancamento.descricao
                 %td 
                   = lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
                 %td
-                  = lancamento.categoria ? lancamento.categoria.descricao  : '--'
-                %td.center
-                  = lancamento.user.email
-                %td.center 
-                  = lancamento.valor
+                  = lancamento.categoria ? lancamento.categoria.descricao  : '--' 
+                %td
+                  = lancamento.valor.real.real_contabil
+                %td.icon16
+                  = link_to '', edit_lancamento_path(lancamento), :class => "icon-edit", :title => 'Editar'
+                %td.icon16.red
+                  = link_to '', lancamento, :method => :delete, :data => { :confirm => 'Tem certeza?' }, :class => "icon-remove", :title => "Deletar"
         #DataTables_Table_0_paginate.dataTables_paginate.paging_two_button
     .actions
       .float-left 
         = link_to "Inicial", '/', :class => 'btn'
       .float-right
         = link_to "Cadastrar", new_lancamento_path, :class => 'btn btn-primary'
+        
