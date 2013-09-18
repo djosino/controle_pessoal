@@ -4,8 +4,8 @@ class CategoriasController < ApplicationController
   # GET /categorias
   # GET /categorias.json
   def index
-    @categorias = Categoria.where("user_id = ? or user_id is null", current_user) 
     @categoria = Categoria.new
+    @categorias = Categoria.all.where("user_id is null or user_id = ?", current_user).order(:id => :asc)
     @tipos_lancamento = TipoLancamento.all
   end
 
@@ -27,8 +27,13 @@ class CategoriasController < ApplicationController
   # POST /categorias.json
   def create
     @categoria = Categoria.new(categoria_params)
+<<<<<<< HEAD
     @categoria.user_id = current_user.id
 
+=======
+    @categoria.user = current_user
+    @categoria.save
+>>>>>>> 7a8a87d30e09b17c692b623c4d9ca29020c7f28a
     respond_to do |format|
       if @categoria.save
         format.html { redirect_to categorias_url, notice: 'Categoria criada com sucesso.'  }
@@ -45,6 +50,8 @@ class CategoriasController < ApplicationController
   # PATCH/PUT /categorias/1
   # PATCH/PUT /categorias/1.json
   def update
+    @categoria.user = current_user
+    @categoria.save
     respond_to do |format|
       if @categoria.update(categoria_params)
         format.html { redirect_to categorias_url, notice: 'Categoria was successfully updated.' }

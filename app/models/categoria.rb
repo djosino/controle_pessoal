@@ -6,5 +6,4 @@ class Categoria < ActiveRecord::Base
   validates_presence_of :descricao, :tipo_lancamento_id
 
   default_scope { order(:descricao => :asc) }
-
 end

@@ -31,7 +31,7 @@ class LancamentosController < ApplicationController
     @lancamento.user = current_user
     respond_to do |format|
       if @lancamento.save
-        format.html { redirect_to '/lancamentos', notice: 'Lancamento was successfully created.' }
+        format.html { redirect_to lancamentos_path, notice: 'Lancamento was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lancamento }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class LancamentosController < ApplicationController
     @lancamento.user = current_user
     respond_to do |format|
       if @lancamento.update(lancamento_params)
-        format.html { redirect_to @lancamento, notice: 'Lancamento was successfully updated.' }
+        format.html { redirect_to lancamentos_path, notice: 'Lancamento was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
