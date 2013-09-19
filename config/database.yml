@@ -37,21 +37,16 @@
 development:
   adapter: postgresql
   encoding: utf-8
-  database: controle_pessoal_development
+  database: dc1rvi0qt3rpau
   pool: 5
-  username: controle_pessoal
-  password:
-test:
-  adapter: postgresql
-  encoding: utf-8
-  database: controle_pessoal_test
-  pool: 5
-  username: controle_pessoal
-  password:
+  username: yytbzpfjfiahaf
+  password: flu9WHkKjtiGaYh04_iz7hLGeJ
+  host: ec2-107-21-120-102.compute-1.amazonaws.com
 production:
   adapter: postgresql
   encoding: utf-8
-  database: controle_pessoal_production
+  database: dc1rvi0qt3rpau
   pool: 5
-  username: controle_pessoal
-  password:
+  username: yytbzpfjfiahaf
+  password: flu9WHkKjtiGaYh04_iz7hLGeJ
+  host: ec2-107-21-120-102.compute-1.amazonaws.com
