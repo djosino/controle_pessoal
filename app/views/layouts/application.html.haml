@@ -25,7 +25,7 @@
         / Top Fixed Bar: Container
         .container
           / Mobile Menu Button
-          %a{:href => "#"}
+          %a{:href => "/"}
             %button.btn.btn-navbar.mobile-menu{:type => "button"}
               %span.icon-bar
               %span.icon-bar
@@ -40,33 +40,6 @@
           / User Navigation
           %ul.nav.pull-right
             = render 'partials/notifications'
-            / User Navigation: User
-            %li.dropdown
-              / User Navigation: User Link
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %i.icon-user.icon-white
-                %span.hidden-phone Daniel
-              / / User Navigation: User Link
-              / User Navigation: User Dropdown
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "#"}
-                    %i.icon-user
-                    Profile
-                %li
-                  %a{"data-toggle" => "modal", :href => "#settings"}
-                    %i.icon-cog
-                    Settings
-                %li
-                  %a{"data-toggle" => "modal", :href => "#messages"}
-                    %i.icon-envelope
-                    Messages
-                %li.divider
-                %li
-                  %a{:href => "/users/logout"}
-                    %i.icon-off
-                    Logout
-              / / User Navigation: User Dropdown
             / / User Navigation: User
           / / User Navigation
         / / Top Fixed Bar: Container
@@ -78,7 +51,7 @@
           / Top Fixed Bar: Breadcrumb Location
           %ul.pull-left
             %li
-              %a{:href => "#"}
+              %a{:href => "/"}
                 %i.icon-home
                 Principal
               %span.divider /
@@ -95,6 +68,9 @@
           %ul.pull-right
             / Top Fixed Bar: Breadcrumb Theme
             %li
+              %i.icon-user.icon-white
+              %span.hidden-phone= current_user.email.slice(0, current_user.email.index('@')).camelize
+            %li
               %a{:href => "/users/logout"}
                 %i.icon-off
                 Logout
@@ -102,56 +78,6 @@
         / / Top Fixed Bar: Breadcrumb Container
       / / Top Fixed Bar: Breadcrumb
     / / Top Fixed Bar
-    / Moldule: Settings
-    #settings.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3#myModalLabel
-          %i.icon-cog
-          Account settings
-      .modal-body
-        %form.form-horizontal
-          .control-group
-            %label.control-label{:for => "inputName"}
-              %i.icon-user
-              Name
-            .controls
-              %input#inputName{:placeholder => "Name", :type => "text"}
-          .control-group
-            %label.control-label{:for => "inputUsername"}
-              %i.icon-user
-              Username
-            .controls
-              %input#inputUsername{:placeholder => "Username", :type => "text"}
-          .control-group
-            %label.control-label{:for => "inputPassword"}
-              %i.icon-key
-              Password
-            .controls
-              %input#inputPassword{:placeholder => "Password", :type => "password"}
-          .control-group
-            %label.control-label{:for => "inputRepeat"}
-              %i.icon-key
-              Repeat Password
-            .controls
-              %input#inputRepeat{:placeholder => "Password", :type => "password"}
-          .control-group
-            %label.control-label{:for => "inputEmail"}
-              %i.icon-envelope
-              Email
-            .controls
-              %input#inputEmail{:placeholder => "Email", :type => "text"}
-          .control-group
-            %label.control-label{:for => "inputWebsite"}
-              %i.icon-home
-              Website
-            .controls
-              %input#inputUsername{:placeholder => "Website", :type => "text"}
-      .modal-footer
-        %button.btn.btn-primary Save changes
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-    / / Module: Settings
-    / Module: Messages
     #messages.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
@@ -190,9 +116,9 @@
       
       = yield
 
-  :javascript
-    // Meu DROPDown 
-    $(".dropdown").bind("click", function(){ 
-      $(this).className +=' open';
-    });
+  /:javascript
+  /  // Meu DROPDown 
+  /  $(".dropdown").bind("click", function(){ 
+  /    $(this).className +=' open';
+  /  });
   = javascript_include_tag "application-footer", "data-turbolinks-track" => true

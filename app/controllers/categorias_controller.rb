@@ -4,8 +4,8 @@ class CategoriasController < ApplicationController
   # GET /categorias
   # GET /categorias.json
   def index
-    @categorias = Categoria.all
     @categoria = Categoria.new
+    @categorias = Categoria.all.where("user_id is null or user_id = ?", current_user).order(:id => :asc)
     @tipos_lancamento = TipoLancamento.all
   end
 
@@ -27,7 +27,7 @@ class CategoriasController < ApplicationController
   # POST /categorias.json
   def create
     @categoria = Categoria.new(categoria_params)
-
+    @categoria.user = current_user
     respond_to do |format|
       if @categoria.save
         format.html { redirect_to categorias_url, notice: 'Categoria criada com sucesso.'  }
@@ -44,6 +44,8 @@ class CategoriasController < ApplicationController
   # PATCH/PUT /categorias/1
   # PATCH/PUT /categorias/1.json
   def update
+    @categoria.user = current_user
+    @categoria.save
     respond_to do |format|
       if @categoria.update(categoria_params)
         format.html { redirect_to categorias_url, notice: 'Categoria was successfully updated.' }
@@ -65,6 +67,14 @@ class CategoriasController < ApplicationController
       format.html { redirect_to categorias_url }
       format.json { head :no_content }
     end
+  end
+
+  def por_tipo
+     @categorias = []
+     if params[:tipo_lancamento_id].present?
+        @categorias = Categoria.where(:tipo_lancamento_id => params[:tipo_lancamento_id])
+     end
+     render :layout => false
   end
 
   private

@@ -7,17 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-u = User.new
-u.email = 'admin@admin.com'
-u.password = u.password_confirmation = '12345678'
-u.save
+if User.count == 0
+   u = User.new
+   u.email = 'admin@admin.com'
+   u.password = u.password_confirmation = '12345678'
+   u.save
+end
+
+if Categoria.count == 0
+   Categoria.create(:descricao => "Salário",                 :tipo_lancamento_id => 1)
+end
 
 User.all.each do |u|
-   Categoria.create(:user_id => u.id, :descricao => "Pessoal")
-   Categoria.create(:user_id => u.id, :descricao => "Receita")
-   Categoria.create(:user_id => u.id, :descricao => "Salário")
-   Categoria.create(:user_id => u.id, :descricao => "Moradia")
-   Categoria.create(:user_id => u.id, :descricao => "Transporte")
-   Categoria.create(:user_id => u.id, :descricao => "Alimentação")
-   Categoria.create(:user_id => u.id, :descricao => "Despesas Bancárias")
+   if u.categorias.blank?
+      Categoria.create(:user_id => u.id, :descricao => "Pessoal",                 :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => u.id, :descricao => "Transporte - Manutenção", :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => u.id, :descricao => "Transporte - Gasolina",   :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => u.id, :descricao => "Alimentação",             :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => u.id, :descricao => "Despesas Bancárias",      :tipo_lancamento_id => 2)
+   end
 end
