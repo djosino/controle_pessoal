@@ -5,7 +5,7 @@ gem 'rails', '4.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem 'devise'
+gem 'devise', '~> 3.0.2'
 
 gem 'haml'
 gem 'haml-rails'

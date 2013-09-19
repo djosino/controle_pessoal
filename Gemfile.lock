@@ -66,11 +66,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    devise (3.1.0)
+    devise (3.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.1)
@@ -157,7 +156,7 @@ PLATFORMS
 DEPENDENCIES
   brazilian-rails
   coffee-rails (~> 4.0.0)
-  devise
+  devise (~> 3.0.2)
   haml
   haml-rails
   jbuilder (~> 1.2)
