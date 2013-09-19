@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
    has_many :categorias
    has_many :lancamentos
 
-   after_craete :criar_categorias
+   after_create :criar_categorias
 
    def criar_categorias
       Categoria.create(:user_id => self.id, :descricao => "Pessoal",                 :tipo_lancamento_id => 2)
