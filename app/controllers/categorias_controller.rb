@@ -27,13 +27,7 @@ class CategoriasController < ApplicationController
   # POST /categorias.json
   def create
     @categoria = Categoria.new(categoria_params)
-<<<<<<< HEAD
-    @categoria.user_id = current_user.id
-
-=======
     @categoria.user = current_user
-    @categoria.save
->>>>>>> 7a8a87d30e09b17c692b623c4d9ca29020c7f28a
     respond_to do |format|
       if @categoria.save
         format.html { redirect_to categorias_url, notice: 'Categoria criada com sucesso.'  }
