@@ -595,7 +595,7 @@ if ($(".pie1")[0]){
     jQuery.plot(jQuery(".pie1"), this.data, {
             colors: ['#88bbc8','#eb815c','#7fc18d','#cea0db','#bbd99b'],   
             legend: {
-                backgroundColor: "#000"
+                backgroundColor: "#000000"
             },  
             height: "100%",
             width: "100%",    
