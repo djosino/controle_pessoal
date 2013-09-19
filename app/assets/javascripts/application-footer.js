@@ -12,5 +12,5 @@
 //= require js/bootstrap/bootstrap-wysiwyg.js
 //= require js/bootstrap/bootstrap-typeahead.js
 //= require js/jquery.easing.min.js
-//= require js/jquery.chosen.min.js
+// require js/jquery.chosen.min.js
 //= require js/avocado-custom.js

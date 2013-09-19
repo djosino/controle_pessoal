@@ -8,6 +8,16 @@ class User < ActiveRecord::Base
    has_many :categorias
    has_many :lancamentos
 
+   after_craete :criar_categorias
+
+   def criar_categorias
+      Categoria.create(:user_id => self.id, :descricao => "Pessoal",                 :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => self.id, :descricao => "Transporte - Manutenção", :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => self.id, :descricao => "Transporte - Gasolina",   :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => self.id, :descricao => "Alimentação",             :tipo_lancamento_id => 2)
+      Categoria.create(:user_id => self.id, :descricao => "Despesas Bancárias",      :tipo_lancamento_id => 2)
+   end
+
     def ultimo_salario
     	Lancamento.where(["categoria_id = 1 and user_id = ?", self.id]).last
     end
