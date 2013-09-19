@@ -9,13 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require template/chosen.css
- *= require template/bootstrap.css
- *= require template/theme/avocado.css
- *= require template/prism.css
- *= require template/fullcalendar.css
- *= require template/fonts-body.css
- *= require template/bootstrap-responsive.css
- *= require template/custom.css
+ * require template/chosen.css
+ * require template/bootstrap.css
+ * require template/theme/avocado.css
+ * require template/prism.css
+ * require template/fullcalendar.css
+ * require template/fonts-body.css
+ * require template/bootstrap-responsive.css
+ * require template/custom.css
  * require_tree .
  */
