@@ -8,7 +8,6 @@
       %table.table.table-bordered.icon16
         %thead
           %tr
-            %th #
             %th Descriçao
             %th Tipo Lancamento
             %th Criação
@@ -16,7 +15,6 @@
         %tbody
           - @categorias.each do |categoria|
             %tr
-              %td= categoria.id
               %td= categoria.descricao
               %td= categoria.tipo_lancamento ? categoria.tipo_lancamento.descricao : '--'
               %td= categoria.created_at.to_s_br

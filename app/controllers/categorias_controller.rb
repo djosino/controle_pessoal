@@ -5,7 +5,7 @@ class CategoriasController < ApplicationController
   # GET /categorias.json
   def index
     @categoria = Categoria.new
-    @categorias = Categoria.all.where("user_id is null or user_id = ?", current_user).order(:id => :asc)
+    @categorias = Categoria.all.where("user_id is null or user_id = ?", current_user).order("tipo_lancamento_id asc, descricao asc")
     @tipos_lancamento = TipoLancamento.all
   end
 
