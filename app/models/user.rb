@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
    has_many :categorias
    has_many :lancamentos
+   has_many :rotinas
 
    after_create :criar_categorias
 

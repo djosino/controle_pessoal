@@ -5,14 +5,14 @@
     .top-bar
       %h3
         %i.icon-cog
-        Novo Lançamento
+        Nova Rotina
     / / Forms: Top Bar
     / Forms: Content
     .well.no-padding
-      = flash_message(@lancamento)
+      = flash_message(@rotina)
       / Forms: Form
       / Forms: Normal input field
-      = form_for(@lancamento, :html => {:class => "form-horizontal"}) do |f|
+      = form_for(@rotina, :html => {:class => "form-horizontal"}) do |f|
         .control-group
           %label.control-label{:for => "inputNormal"}
             Descrição *
@@ -33,20 +33,20 @@
         / Forms: Form Password
         .control-group
           %label.control-label{:for => "inputPassword"}
-            Data venc.
+            Data Inicial *
           .controls
             .input-prepend.input-append
               %span.add-on.float-left 
                 %i.icon-calendar          
-              = f.text_field :data_vencimento
+              = f.text_field :data_inicial
         .control-group
           %label.control-label{:for => "inputPassword"}
-            Data pag. *
+            Data Final *
           .controls
             .input-prepend.input-append
               %span.add-on.float-left 
                 %i.icon-calendar
-              = f.text_field :data_pagamento
+              = f.text_field :data_final
         / / Forms: Form Password
         / Forms: Form Option
         .control-group
@@ -56,11 +56,17 @@
             .input-prepend.input-append
               %span.add-on.float-left R$
               = f.text_field :valor
+        .control-group
+          %label.control-label{:for => "inputDate"}
+            Ativo *
+          .controls
+            %label.checkbox
+              = f.check_box :ativo      
         / / Forms: Form Textarea
         / Forms: Form Actions
         .form-actions
+          = link_to "Voltar", rotinas_path, :class => "btn"
           = f.submit "Confirmar", :class => "btn btn-primary"         
-          = link_to "Voltar", lancamentos_path, :class => "btn"
         / / Forms: Form Actions
       / / Forms: Form
     / / Forms: Content

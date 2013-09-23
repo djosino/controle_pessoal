@@ -1,4 +1,6 @@
 ControlePessoal::Application.routes.draw do
+  resources :rotinas
+
   resources :categorias do
     collection do
       post :por_tipo

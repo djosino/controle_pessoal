@@ -15,9 +15,9 @@
             %tr{:role => "row"}
               %th Data Pag.
               %th Data Venc.
+              %th Descrição
               %th Categoria
               %th Tipo Lançamento
-              %th Descrição
               %th Valor
               %th Opções
               %th
@@ -26,10 +26,10 @@
               %tr.gradeA.odd
                 %td= lancamento.data_pagamento  ? lancamento.data_pagamento.to_s_br    : '--'
                 %td= lancamento.data_vencimento ? lancamento.data_vencimento.to_s_br   : '--'
-                %td= lancamento.categoria       ? lancamento.categoria.descricao       : '--'
                 %td= lancamento.descricao
+                %td= lancamento.categoria       ? lancamento.categoria.descricao       : '--'
                 %td= lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
-                %td= lancamento.valor
+                %td= lancamento.valor.real.real_contabil
                 %td.icon16
                   = link_to '', edit_lancamento_path(lancamento), :class => "icon-edit", :title => 'Editar'
                 %td.icon16.red
@@ -40,4 +40,3 @@
         = link_to "Inicial", '/', :class => 'btn'
       .float-right
         = link_to "Cadastrar", new_lancamento_path, :class => 'btn btn-primary'
-        

@@ -38,19 +38,27 @@ module ApplicationHelper
   end
 
 
-  def edit_icon
+   def edit_icon
      return image_tag('<i class="icon-calendar"></i>',:title => 'Editar')
-  end
+   end
 
-  def show_icon
+   def show_icon
      return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/finder.png',:title => 'Visualizar')
-  end
+   end
 
-  def delete_icon
+   def delete_icon
      return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/cross.png',:title => 'Remover')
-  end
+   end
 
-  def config_icon
+   def config_icon
      return image_tag('/assets/images/template/icons/packs/fugue/16x16/shadeless/document-pdf-text.png',:title => 'PDF Text')
-  end
+   end
+
+   def yes_or_no?(value)
+      value ? "Sim" : "Nao"
+   end
+
+   def true_or_nil?(value)
+      value ? true : nil
+   end
 end

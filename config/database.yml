@@ -14,39 +14,39 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-#development:
-#  adapter: postgresql
-#  encoding: utf-8
-#  database: controle_pessoal
-#  username: postgres
-#  password: postgres
-
-#test:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: controle_pessoal_test
-#  username: postgres
-#  password: postgres
-
-#production:
-#  adapter: postgresql
-#  encoding: utf-8
-#  database: controle_pessoal
-#  username: postgres
-#  password: postgres
 development:
   adapter: postgresql
   encoding: utf-8
-  database: dc1rvi0qt3rpau
-  pool: 5
-  username: yytbzpfjfiahaf
-  password: flu9WHkKjtiGaYh04_iz7hLGeJ
-  host: ec2-107-21-120-102.compute-1.amazonaws.com
+  database: controle_pessoal
+  username: postgres
+  password: postgres
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: controle_pessoal_test
+  username: postgres
+  password: postgres
+
 production:
   adapter: postgresql
   encoding: utf-8
-  database: dc1rvi0qt3rpau
-  pool: 5
-  username: yytbzpfjfiahaf
-  password: flu9WHkKjtiGaYh04_iz7hLGeJ
-  host: ec2-107-21-120-102.compute-1.amazonaws.com
+  database: controle_pessoal
+  username: postgres
+  password: postgres
+#development:
+#  adapter: postgresql
+#  encoding: utf-8
+#  database: dc1rvi0qt3rpau
+#  pool: 5
+#  username: yytbzpfjfiahaf
+#  password: flu9WHkKjtiGaYh04_iz7hLGeJ
+#  host: ec2-107-21-120-102.compute-1.amazonaws.com
+#production:
+#  adapter: postgresql
+#  encoding: utf-8
+#  database: dc1rvi0qt3rpau
+#  pool: 5
+#  username: yytbzpfjfiahaf
+#  password: flu9WHkKjtiGaYh04_iz7hLGeJ
+#  host: ec2-107-21-120-102.compute-1.amazonaws.com

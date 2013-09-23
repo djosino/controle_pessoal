@@ -21,6 +21,7 @@ class CategoriasController < ApplicationController
 
   # GET /categorias/1/edit
   def edit
+    @tipos_lancamento = TipoLancamento.all
   end
 
   # POST /categorias

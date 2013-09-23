@@ -7,17 +7,18 @@ class LancamentosController < ApplicationController
    def index
       lancamento = current_user.ultimo_salario
       @lancamentos = []
-      @lancamentos = Lancamento.mes_atual(lancamento.id, current_user.id) if lancamento
+      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id) if lancamento
    end
 
    # GET /lancamentos/1
    # GET /lancamentos/1.json
    def show
+      redirect_to lancamentos_url  
    end
 
    # GET /lancamentos/new
    def new
-    @lancamento = Lancamento.new
+      @lancamento = Lancamento.new
    end
 
    # GET /lancamentos/1/edit
@@ -26,19 +27,19 @@ class LancamentosController < ApplicationController
 
   # POST /lancamentos
   # POST /lancamentos.json
-  def create
-    @lancamento = Lancamento.new(lancamento_params)
-    @lancamento.user = current_user
-    respond_to do |format|
-      if @lancamento.save
-        format.html { redirect_to lancamentos_path, notice: 'Lancamento was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @lancamento }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @lancamento.errors, status: :unprocessable_entity }
+   def create
+      @lancamento = Lancamento.new(lancamento_params)
+      @lancamento.user = current_user
+      respond_to do |format|
+         if @lancamento.save
+            format.html { redirect_to lancamentos_path, notice: 'Lancamento was successfully created.' }
+            format.json { render action: 'show', status: :created, location: @lancamento }
+         else
+            format.html { render action: 'new' }
+            format.json { render json: @lancamento.errors, status: :unprocessable_entity }
+         end
       end
-    end
-  end
+   end
 
   # PATCH/PUT /lancamentos/1
   # PATCH/PUT /lancamentos/1.json
@@ -73,7 +74,7 @@ class LancamentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lancamento_params
-      params.require(:lancamento).permit(:descricao, :data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id)
+      params.require(:lancamento).permit(:descricao, :data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id, :rotina_id)
     end
 
     def get_selects

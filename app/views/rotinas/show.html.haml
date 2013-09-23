@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @rotina.descricao
+%p
+  %b Data vencimento:
+  = @rotina.data_vencimento
+%p
+  %b Data pagamento:
+  = @rotina.data_pagamento
+%p
+  %b Categoria:
+  = @rotina.categoria
+%p
+  %b Tipo lancamento:
+  = @rotina.tipo_lancamento
+%p
+  %b User:
+  = @rotina.user
+%p
+  %b Valor:
+  = @rotina.valor
+%p
+  %b Data inicial:
+  = @rotina.data_inicial
+%p
+  %b Data final:
+  = @rotina.data_final
+%p
+  %b Ativo:
+  = @rotina.ativo
+
+= link_to 'Edit', edit_rotina_path(@rotina)
+\|
+= link_to 'Back', rotinas_path

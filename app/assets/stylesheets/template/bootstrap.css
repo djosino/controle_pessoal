@@ -1223,7 +1223,7 @@ textarea[disabled],
 input[readonly],
 select[readonly],
 textarea[readonly] {
-  cursor: not-allowed;
+  cursor: inherit; /*not-allowed; padrao */
   background-color: #eeeeee;
 }
 input[type="radio"][disabled],
@@ -8704,7 +8704,7 @@ table.dataTable td.dataTables_empty {
   text-align: center;
 }
 .dataTables_length select {
-  max-width: 50px;
+  max-width: 70px;
 }
 /*
  * Table wrapper
