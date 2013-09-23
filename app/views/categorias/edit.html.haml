@@ -1,1 +1,14 @@
-= render 'form'
+.row-fluid
+  .span5
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-cog
+        Editar Categoria
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = flash_message(@categoria)
+      / Forms: Form
+      / Forms: Normal input field
+      = render 'form'

@@ -1,77 +1,65 @@
-.row-fluid
-  / Forms: Box
-  .span6
-    / Forms: Top Bar
-    .top-bar
-      %h3
-        %i.icon-cog
-        Nova Rotina
-    / / Forms: Top Bar
-    / Forms: Content
-    .well.no-padding
-      = flash_message(@rotina)
-      / Forms: Form
-      / Forms: Normal input field
-      = form_for(@rotina, :html => {:class => "form-horizontal"}) do |f|
-        .control-group
-          %label.control-label{:for => "inputNormal"}
-            Descrição *
-          .controls
-            .input-prepend.input-append
-              %span.add-on.float-left 
-                %i.icon-text-width
-              = f.text_field :descricao
-        .control-group
-          %label.control-label Tipo Lançamento *
-          .controls
-            = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
-        .control-group#get_categorias
-          %label.control-label Categoria *
-          .controls
-            = f.collection_select :categoria_id, @categorias, :id, :descricao, :prompt => "Selecione..."
-        / / Forms: Normal input field
-        / Forms: Form Password
-        .control-group
-          %label.control-label{:for => "inputPassword"}
-            Data Inicial *
-          .controls
-            .input-prepend.input-append
-              %span.add-on.float-left 
-                %i.icon-calendar          
-              = f.text_field :data_inicial
-        .control-group
-          %label.control-label{:for => "inputPassword"}
-            Data Final *
-          .controls
-            .input-prepend.input-append
-              %span.add-on.float-left 
-                %i.icon-calendar
-              = f.text_field :data_final
-        / / Forms: Form Password
-        / Forms: Form Option
-        .control-group
-          %label.control-label{:for => "inputDate"}
-            Valor *
-          .controls
-            .input-prepend.input-append
-              %span.add-on.float-left R$
-              = f.text_field :valor
-        .control-group
-          %label.control-label{:for => "inputDate"}
-            Ativo *
-          .controls
-            %label.checkbox
-              = f.check_box :ativo      
-        / / Forms: Form Textarea
-        / Forms: Form Actions
-        .form-actions
-          = link_to "Voltar", rotinas_path, :class => "btn"
-          = f.submit "Confirmar", :class => "btn btn-primary"         
-        / / Forms: Form Actions
-      / / Forms: Form
-    / / Forms: Content
-  / / Forms: Box
-  / Forms: Box
+= form_for(@rotina, :html => {:class => "form-horizontal"}) do |f|
+  .control-group
+    %label.control-label{:for => "inputNormal"}
+      Descrição *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left 
+          %i.icon-text-width
+        = f.text_field :descricao
+  .control-group
+    %label.control-label Tipo Lançamento *
+    .controls
+      = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
+  .control-group#get_categorias
+    %label.control-label Categoria *
+    .controls
+      = f.collection_select :categoria_id, @categorias, :id, :descricao, :prompt => "Selecione..."
+  / / Forms: Normal input field
+  / Forms: Form Password
+  .control-group
+    %label.control-label{:for => "inputPassword"}
+      Data Inicial *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left 
+          %i.icon-calendar          
+        = f.text_field :data_inicial, :class => "datepicker"
+  .control-group
+    %label.control-label{:for => "inputPassword"}
+      Data Final *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left 
+          %i.icon-calendar
+        = f.text_field :data_final, :class => "datepicker"
+  / / Forms: Form Password
+  / Forms: Form Option
+  .control-group
+    %label.control-label{:for => "inputDate"}
+      Valor *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left R$
+        = f.text_field :valor
+  .control-group
+    %label.control-label{:for => "inputDate"}
+      Ativo *
+    .controls
+      %label.checkbox
+        = f.check_box :ativo      
+  / / Forms: Form Textarea
+  / Forms: Form Actions
+  .form-actions
+    .float-left
+      = link_to "Voltar", rotinas_path, :class => "btn"
+    .float-right
+      = f.submit "Confirmar", :class => "btn btn-primary"         
+  / / Forms: Form Actions
+/ / Forms: Form
+/ / Forms: Content
+/ / Forms: Box
+/ Forms: Box
 
 = observe_field('#lancamento_tipo_lancamento_id', '/categorias/por_tipo', 'tipo_lancamento_id', '#lancamento_categoria_id')
 

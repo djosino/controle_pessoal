@@ -1,33 +1,20 @@
-.row-fluid
-  .span5
-    / Forms: Top Bar
-    .top-bar
-      %h3
-        %i.icon-cog
-        Editar Categoria
-    / / Forms: Top Bar
-    / Forms: Content
-    .well.no-padding
-      = flash_message(@categoria)
-      / Forms: Form
-      / Forms: Normal input field
-      = form_for(@categoria, :html => {:class => "form-horizontal"}) do |f|
-        .control-group
-          %label.control-label{:for => "inputNormal"}
-            Descrição *
-          .controls
-            .input-prepend.input-append
-              %span.add-on.float-left
-                %i.icon-text-width
-              = f.text_field :descricao
-        .control-group
-          %label.control-label Tipo Lançamento *
-          .controls
-            = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
-        / / Forms: Form Textarea
-        / Forms: Form Actions
-        .form-actions
-          .float-left
-            = link_to "Voltar", categorias_path, :class => "btn"     
-          .float-right
-            = f.submit "Criar", :class => "btn btn-primary"
+= form_for(@categoria, :html => {:class => "form-horizontal"}) do |f|
+  .control-group
+    %label.control-label{:for => "inputNormal"}
+      Descrição *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left
+          %i.icon-text-width
+        = f.text_field :descricao
+  .control-group
+    %label.control-label Tipo Lançamento *
+    .controls
+      = f.collection_select :tipo_lancamento_id, @tipos_lancamento, :id, :descricao, :prompt => "Selecione..."
+  / / Forms: Form Textarea
+  / Forms: Form Actions
+  .form-actions
+    .float-left
+      = link_to "Voltar", categorias_path, :class => "btn"     
+    .float-right
+      = f.submit "Criar", :class => "btn btn-primary"

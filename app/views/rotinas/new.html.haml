@@ -1,1 +1,15 @@
-= render 'form'
+.row-fluid
+  / Forms: Box
+  .span6
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-cog
+        Nova Rotina
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = flash_message(@rotina)
+      / Forms: Form
+      / Forms: Normal input field
+      = render 'form'

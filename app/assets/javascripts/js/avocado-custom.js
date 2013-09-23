@@ -1086,13 +1086,13 @@ $("[rel='tooltip']").each(function( index ) {
 // URL: http://harvesthq.github.io/chosen/
 // -------------------------------------------------------------------
 
-if ($("select")[0]){
-
+/*if ($("select")[0]){
   $("select").chosen({disable_search_threshold: 10});
+};*/
 
-};
 
-
+// DatePicker
+$(".datepicker").datepicker({inline: true});
 
 // END: jQuery Waits for Document to Load
 // -------------------------------------------------------------------

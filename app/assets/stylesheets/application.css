@@ -12,6 +12,7 @@
  *= require template/chosen.css
  *= require template/bootstrap.css
  *= require template/theme/avocado.css
+ *= require template/datepicker/datepicker.css
  *= require template/prism.css
  *= require template/fullcalendar.css
  *= require template/fonts-body.css
