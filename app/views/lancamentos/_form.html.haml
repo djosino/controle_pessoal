@@ -24,7 +24,7 @@
       .input-prepend.input-append
         %span.add-on.float-left 
           %i.icon-calendar          
-        = f.text_field :data_vencimento, :class => "datepicker"
+        = f.text_field :data_vencimento, @contrato.data_vencimento ? @contrato.data_vencimento.to_s_br : '', :class => "datepicker"
   .control-group
     %label.control-label{:for => "inputPassword"}
       Data Pagamento *
@@ -32,7 +32,7 @@
       .input-prepend.input-append
         %span.add-on.float-left 
           %i.icon-calendar
-        = f.text_field :data_pagamento, :class => "datepicker"
+        = f.text_field :data_pagamento, @contrato.data_pagamento ? @contrato.data_pagamento.to_s_br : '', :class => "datepicker"
   / / Forms: Form Password
   / Forms: Form Option
   .control-group
