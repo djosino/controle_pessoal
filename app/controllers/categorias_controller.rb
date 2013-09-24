@@ -34,7 +34,7 @@ class CategoriasController < ApplicationController
         format.html { redirect_to categorias_url, notice: 'Categoria criada com sucesso.'  }
         format.json { render action: 'show', status: :created, location: @categoria }
       else
-        @categorias = Categoria.all
+        @categorias = Categoria.all.where("user_id is null or user_id = ?", current_user).order("tipo_lancamento_id asc, descricao asc")
         @tipos_lancamento = TipoLancamento.all
         format.html { render action: 'index' }
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
