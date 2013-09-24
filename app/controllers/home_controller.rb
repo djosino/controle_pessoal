@@ -16,10 +16,13 @@ class HomeController < ApplicationController
          dias = []
          despesas = []
          receitas = []
-         for i in lancamento.data_pagamento..(lancamento.data_pagamento + 30.day)
+
+         dia_fim = lancamento.data_pagamento + 30.day
+         dia_fim = dia_fim > Date.today ? Date.today : dia_fim
+         for i in lancamento.data_pagamento..()
             dias << i.day 
-            despesas << lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
-            receitas << lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+            despesas << lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum.round(2)
+            receitas << lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum.round(2)
          end
 
          @chart = LazyHighCharts::HighChart.new('line') do |f|
