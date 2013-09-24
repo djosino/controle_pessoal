@@ -555,26 +555,21 @@ if ($(".chart1")[0]){
         }
     });
 };
-
+/*
 
 // Pie
 if ($(".pie1")[0]){
-
     //some data
     var d1 = [];
     for (var i = 0; i <= 10; i += 1)
         d1.push([i, parseInt(Math.random() * 30)]);
-    
     var d2 = [];
     for (var i = 0; i <= 10; i += 1)
         d2.push([i, parseInt(Math.random() * 30)]);
-    
     var d3 = [];
     for (var i = 0; i <= 10; i += 1)
         d3.push([i, parseInt(Math.random() * 30)]);
-    
     var ds = new Array();
-    
     ds.push({
         label: "Expenses",
         data:d1,
@@ -735,6 +730,7 @@ if ($(".realtimechart")[0]){
     });
 };
 
+*/
 
 // Bars
 if ($(".bars1")[0]){

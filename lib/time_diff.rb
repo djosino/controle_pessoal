@@ -5,7 +5,7 @@ class Time
          data_i = Date.new(2013,i,1)
          data_f = data_i.end_of_month
 
-         qnt_dias_mes << (data_f - data_i).to_i + 1
+         qnt_dias_mes << data_f.day
       end
 
       diff = (fim - inicio).to_i
@@ -20,5 +20,12 @@ class Time
          end
       end
       return meses
+   end
+
+   def self.percentual_dia
+      hoje = Date.today
+      fim_mes = hoje.end_of_month.day
+
+      return ((hoje.day * 100) / fim_mes).to_i
    end
 end

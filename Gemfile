@@ -11,7 +11,7 @@ gem 'haml'
 gem 'haml-rails'
 
 gem 'brazilian-rails'
-#gem 'time_diff'
+gem 'lazy_high_charts'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.0'
 

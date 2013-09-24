@@ -5,14 +5,14 @@
     / Information Boxes: Users Registered
     
     
-    %a.in-lancamento.span3.well.infobox{:href => "/lancamentos"}
+    %a.in-lancamento.span3.well.infobox{:href => lancamentos_path }
       %i.icon-6x.icon-tags
       .pull-right.text-right
         Lançamentos
         %br
-          %b.huge= @totais[0]
-          %br
-            %span.caps.muted Mensal
+        %b.huge= @totais[0]
+        %br
+        %span.caps.muted Mensal
     / / Information Boxes: Users Registered
     / Information Boxes: Active Users
     %a.in-receita.span3.well.infobox{:href => receitas_lancamentos_path}
@@ -20,9 +20,9 @@
       .pull-right.text-right
         Receita
         %br
-          %b.huge= @totais[1].real.real_contabil
-          %br
-            %span.caps.muted= "+" + @totais[4].real.real_contabil + " HOJE"
+        %b.huge= @totais[1].real.real_contabil
+        %br
+        %span.caps.muted= "+ " + @totais[4].real.real_contabil + " HOJE"
     / / Information Boxes: Active Users
     / Information Boxes: Images
     %a.in-despesa.span3.well.infobox{:href => despesas_lancamentos_path}
@@ -30,9 +30,9 @@
       .pull-right.text-right
         Despesa
         %br
-          %b.huge= @totais[2].real.real_contabil
-          %br
-            %span.caps.muted= "-" + @totais[5].real.real_contabil + " HOJE"
+        %b.huge= @totais[2].real.real_contabil
+        %br
+        %span.caps.muted= "- " + @totais[5].real.real_contabil + " HOJE"
     / / Information Boxes: Images
     / Information Boxes: Applications
     %a.in-saldo.span3.well.infobox{:href => lancamentos_path}
@@ -40,55 +40,49 @@
       .pull-right.text-right
         Saldo
         %br
-          %b.huge= @totais[3].real.real_contabil
-          %br
-            %span.caps.muted= @totais[6].real.real_contabil + " HOJE"
+        %b.huge= @totais[3].real.real_contabil
+        %br
+        %span.caps.muted= @totais[6].real.real_contabil + " HOJE"
     / / Information Boxes: Applications
   / / Information Boxes
   / Site Traffic and Pie
   .row-fluid
     / Site Traffic: Box
-    .span8
+    .span12
       / Site Traffic: Top Bar
       .top-bar{:style => "padding-left: 0px;"}
         %ul.tab-container
           %li.active
             %a{:href => "#tab-traffic"}
               %i.icon-bar-chart
-              Site Traffic
-          %li
-            %a{:href => "#tab-server"}
-              %i.icon-cogs
-              Server Status
-        %div
-          %a.top-bar-minimize{"data-original-title" => "Minimize", :href => "#", :rel => "tooltip", :title => ""}
-            %i.icon-resize-small
-      / / Site Traffic: Top Bar
-      / Site Traffic: Content
+              Relatório Mensal
+
       .well
         .tab-content
           #tab-traffic.tab-pane.active
             .progress.progress-mini
-              .bar{:style => "width: 15%;"}
+              .bar{:style => "width: #{@percentual}%;"}
             .alert.alert-info
               %button.close{"data-dismiss" => "alert", :type => "button"} ×
               %i.icon-bolt
-              %b Last Update
-              Traffic was last updated 3 hours ago.
-            .graph.chart1{:style => "padding: 0px;"}
-              %canvas.flot-base{:height => "240", :style => "width: 730px; height: 240px;", :width => "730"}
-              %canvas.flot-overlay{:height => "240", :style => "width: 730px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "730"}
-          #tab-server.tab-pane
-            .progress.progress-danger.progress-mini
-              .bar{:style => "width: 98%;"}
-            .alert.alert-error
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              %i.icon-bolt
-              %b Huge Traffic
-              Your server has nearly exceeded the bandwidth limits.
-            .graph.realtimechart{:style => "padding: 0px;"}
-              %canvas.flot-base{:height => "240", :style => "width: 100px; height: 240px;", :width => "100"}
-              %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
+              %b Relatório:  
+              Gastos Mensal.
+            .chart(style='min-height: 200px; margin: 10px 0; width: 100%')
+              - if @chart
+                = high_chart("relatorio1", @chart)
+
+
+          /#tab-server.tab-pane
+          /  .progress.progress-danger.progress-mini
+          /    .bar{:style => "width: 98%;"}
+          /  .alert.alert-error
+          /    %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          /    %i.icon-bolt
+          /    %b Huge Traffic
+          /    Your server has nearly exceeded the bandwidth limits.
+          /  .graph.realtimechart{:style => "padding: 0px;"}
+          /    %canvas.flot-base{:height => "240", :style => "width: 100px; height: 240px;", :width => "100"}
+          /    %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
       / / Site Traffic: Content
     / / Site Traffic: Box
     / Pie: Box

@@ -16,8 +16,7 @@
     /[if lt IE 9]
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = csrf_meta_tags
-
-
+    = javascript_include_tag "application-footer", "data-turbolinks-track" => true
   %body
     / Top Fixed Bar
     .navbar.navbar-inverse.navbar-fixed-top
@@ -127,4 +126,3 @@
   /  $(".dropdown").bind("click", function(){ 
   /    $(this).className +=' open';
   /  });
-  = javascript_include_tag "application-footer", "data-turbolinks-track" => true

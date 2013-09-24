@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   	  	lancamento = current_user.ultimo_salario
       @totais = []
       if lancamento
+         lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id)
          @totais << Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).count 
          @totais << Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).receita.sum(:valor).to_f
          @totais << Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).despesa.sum(:valor).to_f
@@ -11,8 +12,26 @@ class HomeController < ApplicationController
          @totais << Lancamento.where("user_id = ?  and data_pagamento::date = current_date",current_user.id).receita.sum(:valor).to_f
          @totais << Lancamento.where("user_id = ?  and data_pagamento::date = current_date",current_user.id).despesa.sum(:valor).to_f
          @totais << (@totais[4] - @totais[5])
+
+         dias = []
+         despesas = []
+         receitas = []
+         for i in lancamento.data_pagamento..(lancamento.data_pagamento + 30.day)
+            dias << i.day 
+            despesas << lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+            receitas << lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+         end
+
+         @chart = LazyHighCharts::HighChart.new('line') do |f|
+            f.title({ :text=>"Relatório Mensal"})
+            f.options[:xAxis][:categories] = dias 
+            f.options[:yAxis][:title][:text] = "Valores"
+            f.series(:type=> 'column', :name => "Receitas", :data => receitas)
+            f.series(:type=> 'column', :name => "Despesas", :data => despesas, :color => "#B80000")
+         end
       else
          @totais = [0,0,0,0]
       end
-  	end
+      @percentual = Time.percentual_dia
+   end
 end

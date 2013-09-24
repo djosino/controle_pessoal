@@ -14,7 +14,7 @@
 //= require jquery_ujs
 // require turbolinks
 //= require js/charts/excanvas.min.js
-//= require js/charts/jquery.flot.js
+// require js/charts/jquery.flot.js
 //= require js/jquery.jpanelmenu.min.js
 //= require js/jquery.cookie.js
 //= require js/avocado-custom-predom.js

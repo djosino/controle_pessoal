@@ -73,7 +73,7 @@ class CategoriasController < ApplicationController
   def por_tipo
      @categorias = []
      if params[:tipo_lancamento_id].present?
-        @categorias = Categoria.where(:tipo_lancamento_id => params[:tipo_lancamento_id], :user_id  => current_user.id)
+        @categorias = Categoria.where(["tipo_lancamento_id = ? and (user_id is null or user_id = ?)", params[:tipo_lancamento_id], current_user.id])
      end
      render :layout => false
   end
