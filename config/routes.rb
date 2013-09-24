@@ -7,7 +7,12 @@ ControlePessoal::Application.routes.draw do
     end
   end
 
-  resources :lancamentos
+  resources :lancamentos do
+    collection do
+      get :receitas
+      get :despesas
+    end
+  end
 
   devise_for :users, :path_names => { 
                 :sign_in => 'login', 

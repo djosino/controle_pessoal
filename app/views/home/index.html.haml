@@ -15,7 +15,7 @@
             %span.caps.muted Mensal
     / / Information Boxes: Users Registered
     / Information Boxes: Active Users
-    %a.in-receita.span3.well.infobox{:href => "/lancamentos"}
+    %a.in-receita.span3.well.infobox{:href => receitas_lancamentos_path}
       %i.icon-6x.icon-arrow-up
       .pull-right.text-right
         Receita
@@ -25,7 +25,7 @@
             %span.caps.muted= "+" + @totais[4].real.real_contabil + " HOJE"
     / / Information Boxes: Active Users
     / Information Boxes: Images
-    %a.in-despesa.span3.well.infobox{:href => "/lancamentos"}
+    %a.in-despesa.span3.well.infobox{:href => despesas_lancamentos_path}
       %i.icon-6x.icon-arrow-down
       .pull-right.text-right
         Despesa
@@ -35,7 +35,7 @@
             %span.caps.muted= "-" + @totais[5].real.real_contabil + " HOJE"
     / / Information Boxes: Images
     / Information Boxes: Applications
-    %a.in-saldo.span3.well.infobox{:href => "/lancamentos"}
+    %a.in-saldo.span3.well.infobox{:href => lancamentos_path}
       %i.icon-6x.icon-bar-chart
       .pull-right.text-right
         Saldo

@@ -10,6 +10,21 @@ class LancamentosController < ApplicationController
       @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id) if lancamento
    end
 
+   def receitas
+      lancamento = current_user.ultimo_salario
+      @lancamentos = []
+      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).receita if lancamento
+      render :template => "lancamentos/index.html.haml"
+   end
+
+   def despesas
+      lancamento = current_user.ultimo_salario
+      @lancamentos = []
+      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).despesa if lancamento
+      render :template => "lancamentos/index.html.haml"
+   end
+
+
    # GET /lancamentos/1
    # GET /lancamentos/1.json
    def show
