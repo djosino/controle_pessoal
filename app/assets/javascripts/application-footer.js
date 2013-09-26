@@ -13,11 +13,6 @@
 // require js/charts/jquery.flot.pie.js
 // require js/charts/jquery.flot.resize.js
 
-// Charts Gem
-//= require highcharts/highcharts                                                           
-//= require highcharts/highcharts-more                                                         
-//= require highcharts/highstock
-
 
 //= require js/bootstrap/bootstrap.min.js
 //= require js/bootstrap/bootstrap-wysiwyg.js

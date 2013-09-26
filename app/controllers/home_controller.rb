@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  	def index
-  	  	lancamento = current_user.ultimo_salario
+   def index
+      lancamento = current_user.ultimo_salario
       @totais = []
       if lancamento
          lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id)
