@@ -35,7 +35,7 @@ class LancamentosController < ApplicationController
 
    # GET /lancamentos/1/edit
    def edit
-      @sub_categorias = @lancamento.sub_categoria
+      @sub_categorias = @lancamento.sub_categoria ? @lancamento.sub_categoria : []
    end
 
   # POST /lancamentos
