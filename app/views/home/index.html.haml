@@ -60,11 +60,6 @@
           #tab-traffic.tab-pane.active
             .progress.progress-mini
               .bar{:style => "width: #{@percentual}%;"}
-            .alert.alert-info
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              %i.icon-bolt
-              %b Relatório:  
-              Gastos Mensal.
             .chart(style='min-height: 200px; margin: 10px 0; width: 100%')
               - if @chart
                 = high_chart("relatorio1", @chart)
@@ -93,11 +88,6 @@
       .tab-content
         #tab-traffic.tab-pane.active
           .chart(style='min-height: 200px; margin: 0px; width: 100%')
-            .alert.alert-info
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              %i.icon-bolt
-              %b Relatório:
-              Gastos por Categoria
             - if @chart
               = high_chart("relatorio2", @chart_pizza) do |c|
                 = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"

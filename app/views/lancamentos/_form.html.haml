@@ -1,4 +1,5 @@
 = form_for(@lancamento, :html => {:class => "form-horizontal"}) do |f|
+  = flash_message(@lancamento)
   .control-group
     %label.control-label{:for => "inputNormal"}
       Descrição *
@@ -58,4 +59,5 @@
 / Forms: Box
 
 = observe_field('#lancamento_tipo_lancamento_id', '/categorias/por_tipo', 'tipo_lancamento_id', '#lancamento_categoria_id')
+
 = observe_field('#lancamento_categoria_id', '/sub_categorias/categoria', 'categoria_id', '#lancamento_sub_categoria_id')

@@ -15,6 +15,10 @@
     %label.control-label Categoria *
     .controls
       = f.collection_select :categoria_id, @categorias, :id, :descricao, :prompt => "Selecione..."
+  .control-group
+    %label.control-label Sub-Categoria
+    .controls
+      = f.collection_select :sub_categoria_id, @sub_categorias, :id, :descricao, :prompt => "Selecione..."
   / / Forms: Normal input field
   / Forms: Form Password
   .control-group
@@ -63,3 +67,4 @@
 
 = observe_field('#lancamento_tipo_lancamento_id', '/categorias/por_tipo', 'tipo_lancamento_id', '#lancamento_categoria_id')
 
+= observe_field('#lancamento_categoria_id', '/sub_categorias/categoria', 'categoria_id', '#lancamento_sub_categoria_id')

@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
                                  :rotina_id          => r.id, 
                                  :data_pagamento     => data, 
                                  :data_vencimento    => data, 
-                                 :categoria_id       => r.categoria_id, 
+                                 :categoria_id       => r.categoria_id,
+                                 :sub_categoria_id   => r.sub_categoria_id,  
                                  :tipo_lancamento_id => r.tipo_lancamento_id )
             end
             if dev_criados > criados 
@@ -48,6 +49,7 @@ class ApplicationController < ActionController::Base
                                     :data_pagamento     => data, 
                                     :data_vencimento    => data, 
                                     :categoria_id       => r.categoria_id, 
+                                    :sub_categoria_id   => r.sub_categoria_id,
                                     :tipo_lancamento_id => r.tipo_lancamento_id )
                end
             end   

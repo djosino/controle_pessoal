@@ -17,11 +17,13 @@ class RotinasController < ApplicationController
   # GET /rotinas/new
   def new
     @rotina = Rotina.new
+    @sub_categorias = []
   end
 
   # GET /rotinas/1/edit
-  def edit
-  end
+   def edit
+      @sub_categorias = @lancamento.sub_categoria  
+   end
 
   # POST /rotinas
   # POST /rotinas.json
@@ -30,7 +32,7 @@ class RotinasController < ApplicationController
     @rotina.user = current_user
     respond_to do |format|
       if @rotina.save
-        format.html { redirect_to rotinas_path, notice: 'Rotina was successfully created.' }
+        format.html { redirect_to rotinas_path, notice: 'Rotina criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @rotina }
       else
         format.html { render action: 'new' }
@@ -44,7 +46,7 @@ class RotinasController < ApplicationController
   def update
     respond_to do |format|
       if @rotina.update(rotina_params)
-        format.html { redirect_to rotinas_path, notice: 'Rotina was successfully updated.' }
+        format.html { redirect_to rotinas_path, notice: 'Rotina atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

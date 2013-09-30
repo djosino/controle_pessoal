@@ -21,12 +21,11 @@ module ApplicationHelper
 
   def observe_field(object, url, with, update)
     retorno = "<script>"
-    retorno += "var valor = jQuery('#{object}');"
-    retorno += "valor.bind('change', function(){"
+    retorno += "jQuery('#{object}').bind('change', function(){"
     retorno += "jQuery.ajax({
                   url: '#{url}',
                   type: 'POST',
-                  data: {'#{with}' : valor.val()},
+                  data: {'#{with}' : jQuery('#{object}').val()},
                   dataType: 'html',
                   success: function(data) {
                     jQuery('#{update}').html(data);

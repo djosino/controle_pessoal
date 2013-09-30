@@ -2,6 +2,7 @@
   / Pie: Box
   .span12
     / Pie: Top Bar
+    = flash_message
     .top-bar
       %h3
         %i.icon-eye-open
@@ -28,9 +29,9 @@
                 %td= rotina.data_inicial.to_s_br
                 %td= rotina.data_final.to_s_br
                 %td= rotina.descricao
-                %td= rotina.categoria.descricao
-                %td= rotina.tipo_lancamento.descricao
-                %td= rotina.valor ? rotina.valor.real.real_contabil : ''
+                %td= rotina.categoria ? rotina.categoria.descricao : '--'
+                %td= rotina.tipo_lancamento ? rotina.tipo_lancamento.descricao : '--'
+                %td= rotina.valor ? rotina.valor.real.real_contabil : '--'
                 %td= check_box_tag :show, true_or_nil?(rotina.ativo), true_or_nil?(rotina.ativo), :disabled => true
                 %td.icon16
                   = link_to '', edit_rotina_path(rotina), :class => "icon-edit", :title => 'Editar'

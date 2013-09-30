@@ -2,6 +2,7 @@
   / Pie: Box
   .span12
     / Pie: Top Bar
+    = flash_message
     .top-bar
       %h3
         %i.icon-eye-open
@@ -17,6 +18,7 @@
               %th Data Venc.
               %th Descrição
               %th Categoria
+              %th Sub-Categoria
               %th Tipo Lançamento
               %th Valor
               %th Opções
@@ -27,7 +29,8 @@
                 %td= lancamento.data_pagamento  ? lancamento.data_pagamento.to_s_br    : '--'
                 %td= lancamento.data_vencimento ? lancamento.data_vencimento.to_s_br   : '--'
                 %td= lancamento.descricao
-                %td= lancamento.categoria       ? lancamento.categoria.descricao       : '--'
+                %td= (lancamento.categoria       ? lancamento.categoria.descricao       : '--') 
+                %td= (lancamento.sub_categoria   ? lancamento.sub_categoria.descricao   : '--')
                 %td= lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
                 %td= lancamento.valor.real.real_contabil
                 %td.icon16

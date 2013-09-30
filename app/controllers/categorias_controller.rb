@@ -54,7 +54,7 @@ class CategoriasController < ApplicationController
     @categoria.save
     respond_to do |format|
       if @categoria.update(categoria_params)
-        format.html { redirect_to categorias_url, notice: 'Categoria was successfully updated.' }
+        format.html { redirect_to categorias_url, notice: 'Categoria atualizada com sucesso.' }
         format.json { head :no_content }
       else
         @categorias = Categoria.all
