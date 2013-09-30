@@ -71,7 +71,7 @@ class RotinasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rotina_params
-      params.require(:rotina).permit(:descricao, :data_vencimento, :data_pagamento, :categoria_id, :tipo_lancamento_id, :user_id, :valor, :data_inicial, :data_final, :ativo)
+      params.require(:rotina).permit(:descricao, :data_vencimento, :data_pagamento, :categoria_id, :tipo_lancamento_id, :user_id, :valor, :data_inicial, :data_final, :ativo, :sub_categoria_id)
     end
     def get_selects
        @tipos_lancamento = TipoLancamento.all

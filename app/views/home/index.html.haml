@@ -48,14 +48,12 @@
   / Site Traffic and Pie
   .row-fluid
     / Site Traffic: Box
-    .span12
+    .span8
       / Site Traffic: Top Bar
-      .top-bar{:style => "padding-left: 0px;"}
-        %ul.tab-container
-          %li.active
-            %a{:href => "#tab-traffic"}
-              %i.icon-bar-chart
-              Relatório Mensal
+      .top-bar
+        %h3
+          %i.icon-bar-chart
+          Relatório Mensal
 
       .well
         .tab-content
@@ -83,45 +81,28 @@
           /  .graph.realtimechart{:style => "padding: 0px;"}
           /    %canvas.flot-base{:height => "240", :style => "width: 100px; height: 240px;", :width => "100"}
           /    %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
-      / / Site Traffic: Content
-    / / Site Traffic: Box
-    / Pie: Box
+        / / Site Traffic: Content
+        / Pie: Top Bar
     .span4
-      / Pie: Top Bar
       .top-bar
         %h3
           %i.icon-money
           Earnings
-        %div
-          %a.top-bar-minimize{"data-original-title" => "Minimize", :href => "#", :rel => "tooltip", :title => ""}
-            %i.icon-resize-small
       / / Pie: Top Bar
       / Pie: Content
-      .well
-        .alert
-          %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          %i.icon-star
-          %b Income Update
-          Your income has gone up by 74% the last week.
-        .pie.pie1{:style => "padding: 0px;"}
-          %canvas.flot-base{:height => "240", :style => "width: 330px; height: 240px;", :width => "330"}
-          %canvas.flot-overlay{:height => "240", :style => "width: 330px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "330"}
-          .legend
-            %div{:style => "position: absolute; width: 62px; height: 60px; top: 5px; right: 5px; background-color: transparent; opacity: 0.85;"}             
-              %table{:style => "position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454"}
-                %tbody
-                  %tr
-                    %td.legendColorBox
-                      %div{:style => "border:1px solid #ccc;padding:1px"}
-                        %div{:style => "width:4px;height:0;border:5px solid rgb(136,187,200);overflow:hidden"}
-                    %td.legendLabel Expenses
-                  %tr
-                    %td.legendColorBox
-                      %div{:style => "border:1px solid #ccc;padding:1px"}
-                        %div{:style => "width:4px;height:0;border:5px solid rgb(235,129,92);overflow:hidden"}
-                    %td.legendLabel Sales
-                  %tr
-                    %td.legendColorBox
-                      %div{:style => "border:1px solid #ccc;padding:1px"}
-                        %div{:style => "width:4px;height:0;border:5px solid rgb(127,193,141);overflow:hidden"}
-                    %td.legendLabel Bonuses
+      .tab-content
+        #tab-traffic.tab-pane.active
+          .chart(style='min-height: 200px; margin: 0px; width: 100%')
+            .alert.alert-info
+              %button.close{"data-dismiss" => "alert", :type => "button"} ×
+              %i.icon-bolt
+              %b Relatório:
+              Gastos por Categoria
+            - if @chart
+              = high_chart("relatorio2", @chart_pizza) do |c|
+                = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
+                = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
+
+
+
+

@@ -1,4 +1,11 @@
 ControlePessoal::Application.routes.draw do
+  
+  resources :sub_categorias do
+    collection do
+      post :categoria
+    end
+  end
+
   resources :rotinas
 
   resources :categorias do

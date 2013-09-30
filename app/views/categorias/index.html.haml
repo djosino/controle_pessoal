@@ -11,19 +11,22 @@
             %th Descriçao
             %th Tipo Lancamento
             %th Criação
-            %th(colspan=2) Acoes
+            %th(colspan=3) Acoes
         %tbody
           - @categorias.each do |categoria|
             %tr
               %td= categoria.descricao
               %td= categoria.tipo_lancamento ? categoria.tipo_lancamento.descricao : '--'
               %td= categoria.created_at.to_s_br
-              %td
-                - if categoria.user_id
+              - if categoria.user_id
+                %td
+                  = link_to '', categoria, :class => "icon-check", :title => 'Editar Sub-Categorias'
+                %td
                   = link_to '', edit_categoria_path(categoria), :class => "icon-edit", :title => 'Editar' 
-              %td
-                - if categoria.user_id
+                %td
                   = link_to '', categoria, :method => :delete, :data => { :confirm => 'Confirma exclusão da categoria?' }, :class => "icon-remove", :title => "Remover"
+              - else
+                %td(colspan=3)
   / Forms: Box
   .span5
     / Forms: Top Bar
@@ -55,10 +58,5 @@
         .form-actions
           .float-right
             = f.submit "Confirmar", :class => "btn btn-primary"     
-        / / Forms: Form Actions
-      / / Forms: Form
-    / / Forms: Content
-  / / Forms: Box
-  / Forms: Box
 
 

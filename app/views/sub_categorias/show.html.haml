@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @sub_categoria.descricao
+%p
+  %b Categoria:
+  = @sub_categoria.categoria
+%p
+  %b User:
+  = @sub_categoria.user
+
+= link_to 'Edit', edit_sub_categoria_path(@sub_categoria)
+\|
+= link_to 'Back', sub_categorias_path

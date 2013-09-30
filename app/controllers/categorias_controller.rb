@@ -11,8 +11,13 @@ class CategoriasController < ApplicationController
 
   # GET /categorias/1
   # GET /categorias/1.json
-  def show
-  end
+   def show
+      @sub_categoria = SubCategoria.new
+      @sub_categorias = []
+      if @categoria.sub_categorias.any?
+         @sub_categorias = @categoria.sub_categorias.order("descricao asc")
+      end
+   end
 
   # GET /categorias/new
   def new
@@ -81,7 +86,7 @@ class CategoriasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_categoria
-      @categoria = Categoria.find(params[:id])
+      @categoria = Categoria.where("id = ? and user_id = ?", params[:id], current_user.id).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

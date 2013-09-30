@@ -1,12 +1,48 @@
-%p#notice= notice
-
-%p
-  %b User:
-  = @categoria.user
-%p
-  %b Descricao:
-  = @categoria.descricao
-
-= link_to 'Edit', edit_categoria_path(@categoria)
-\|
-= link_to 'Back', categorias_path
+.row-fluid
+  .span6.no-margin
+    .top-bar
+      %h3
+        %i.icon-calendar
+        Lista de Sub-Categorias
+    .well
+      %table.table.table-bordered.icon16
+        %thead
+          %tr
+            %th Descriçao
+            %th Categoria
+            %th Criação
+            %th(colspan=2) Acoes
+        %tbody
+          - @sub_categorias.each do |sub_categoria|
+            %tr
+              %td= sub_categoria.descricao
+              %td= sub_categoria.categoria ? sub_categoria.categoria.descricao : '--'
+              %td= sub_categoria.created_at.to_s_br
+              - if sub_categoria.user_id 
+                %td
+                  = link_to '', edit_sub_categoria_path(sub_categoria), :class => "icon-edit", :title => 'Editar' 
+                %td
+                  = link_to '', sub_categoria, :method => :delete, :data => { :confirm => 'Confirma exclusão da sub-categoria?' }, :class => "icon-remove", :title => "Remover"
+  / Forms: Box
+  .span6
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-cog
+        Nova Sub-Categoria
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = form_for(@sub_categoria, :html => {:class => "form-horizontal"}) do |f|
+        = f.hidden_field :categoria_id, :value => @categoria.id
+        .control-group
+          %label.control-label{:for => "inputNormal"}
+            Descrição *
+          .controls
+            .input-prepend.input-append
+              %span.add-on.float-left
+                %i.icon-text-width
+              = f.text_field :descricao
+        .form-actions
+          .float-right
+            = f.submit "Confirmar", :class => "btn btn-primary"     

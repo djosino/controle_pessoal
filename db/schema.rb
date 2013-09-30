@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923133150) do
+ActiveRecord::Schema.define(version: 20130930160204) do
 
   create_table "categorias", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20130923133150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rotina_id"
+    t.integer  "sub_categoria_id"
   end
 
   create_table "rotinas", force: true do |t|
@@ -51,11 +52,23 @@ ActiveRecord::Schema.define(version: 20130923133150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "ultima_execucao_em"
+    t.integer  "sub_categoria_id"
   end
 
   add_index "rotinas", ["categoria_id"], name: "index_rotinas_on_categoria_id", using: :btree
   add_index "rotinas", ["tipo_lancamento_id"], name: "index_rotinas_on_tipo_lancamento_id", using: :btree
   add_index "rotinas", ["user_id"], name: "index_rotinas_on_user_id", using: :btree
+
+  create_table "sub_categorias", force: true do |t|
+    t.string   "descricao"
+    t.integer  "categoria_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sub_categorias", ["categoria_id"], name: "index_sub_categorias_on_categoria_id", using: :btree
+  add_index "sub_categorias", ["user_id"], name: "index_sub_categorias_on_user_id", using: :btree
 
   create_table "tipo_lancamentos", force: true do |t|
     t.string   "descricao"

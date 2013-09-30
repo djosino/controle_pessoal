@@ -5,25 +5,21 @@ class LancamentosController < ApplicationController
    # GET /lancamentos
    # GET /lancamentos.json
    def index
-      lancamento = current_user.ultimo_salario
       @lancamentos = []
-      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id) if lancamento
+      @lancamentos = Lancamento.mes_atual(Date.today, current_user.id).order(:data_pagamento => :asc)
    end
 
    def receitas
-      lancamento = current_user.ultimo_salario
       @lancamentos = []
-      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).receita if lancamento
+      @lancamentos = Lancamento.mes_atual(Date.today, current_user.id).receita.order(:data_pagamento => :asc)
       render :template => "lancamentos/index.html.haml"
    end
 
    def despesas
-      lancamento = current_user.ultimo_salario
       @lancamentos = []
-      @lancamentos = Lancamento.mes_atual(lancamento.data_pagamento, current_user.id).despesa if lancamento
+      @lancamentos = Lancamento.mes_atual(Date.today, current_user.id).despesa.order(:data_pagamento => :asc)
       render :template => "lancamentos/index.html.haml"
    end
-
 
    # GET /lancamentos/1
    # GET /lancamentos/1.json
@@ -34,10 +30,12 @@ class LancamentosController < ApplicationController
    # GET /lancamentos/new
    def new
       @lancamento = Lancamento.new
+      @sub_categorias = []
    end
 
    # GET /lancamentos/1/edit
    def edit
+      @sub_categorias = @lancamento.sub_categoria
    end
 
   # POST /lancamentos
@@ -90,7 +88,7 @@ class LancamentosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lancamento_params
       params[:lancamento][:valor] = params[:lancamento][:valor].gsub(',','.')
-      params.require(:lancamento).permit(:descricao, :data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id, :rotina_id)
+      params.require(:lancamento).permit(:descricao, :data_vencimento, :data_pagamento, :valor, :tipo_lancamento_id, :categoria_id, :user_id, :rotina_id, :sub_categoria_id)
     end
 
     def get_selects
