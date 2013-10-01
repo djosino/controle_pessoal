@@ -18,6 +18,8 @@ ControlePessoal::Application.routes.draw do
     collection do
       get :receitas
       get :despesas
+      get :consultas
+      post :por_mes_ano
     end
   end
 

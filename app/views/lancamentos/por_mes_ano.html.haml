@@ -1,0 +1,43 @@
+.row-fluid
+  / Pie: Box
+  .span12
+    / Pie: Top Bar
+    = flash_message
+    .top-bar
+      %h3
+        %i.icon-eye-open
+        Lista de Lançamentos
+    / / Pie: Top Bar
+    / Pie: Content
+    .well.no-padding
+      #DataTables_Table_0_wrapper.dataTables_wrapper{:role => "grid"}
+        %table#DataTables_Table_0.data-table.dataTable{"aria-describedby" => "DataTables_Table_0_info"}
+          %thead
+            %tr{:role => "row"}
+              %th Data Pag.
+              %th Data Venc.
+              %th Descrição
+              %th Categoria
+              %th Sub-Categoria
+              %th Tipo Lançamento
+              %th Valor
+              %th Opções
+              %th
+          %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
+            - @lancamentos.each do |lancamento|
+              %tr.gradeA.odd
+                %td= lancamento.data_pagamento  ? lancamento.data_pagamento.to_s_br    : '--'
+                %td= lancamento.data_vencimento ? lancamento.data_vencimento.to_s_br   : '--'
+                %td= lancamento.descricao
+                %td= (lancamento.categoria       ? lancamento.categoria.descricao       : '--') 
+                %td= (lancamento.sub_categoria   ? lancamento.sub_categoria.descricao   : '--')
+                %td= lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
+                %td= lancamento.valor.real.real_contabil
+                %td.icon16
+                  = link_to '', edit_lancamento_path(lancamento), :class => "icon-edit", :title => 'Editar'
+                %td.icon16.red
+                  = link_to '', lancamento, :method => :delete, :data => { :confirm => 'Tem certeza?' }, :class => "icon-remove", :title => "Deletar"
+        #DataTables_Table_0_paginate.dataTables_paginate.paging_two_button
+    .actions
+      .float-left 
+        = link_to "Inicial", '/', :class => 'btn'

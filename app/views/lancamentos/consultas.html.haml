@@ -1,0 +1,26 @@
+.row-fluid
+  / Forms: Box
+  .span6
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-search
+        Consulta por Mes / Ano
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = flash_message
+      / Forms: Form
+      / Forms: Normal input field
+      = form_tag({:action => 'por_mes_ano'}, :class => "form-horizontal") do
+        .control-group
+          %label.control-label Mês *
+          .controls
+            = select_tag :mes, options_for_select(meses)
+        .control-group
+          %label.control-label Ano *
+          .controls
+            = select_tag :ano, options_for_select(@anos)
+        .form-actions     
+          .float-right
+            = submit_tag "Confirmar", :class => "btn btn-primary"
