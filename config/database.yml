@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: utf-8
-  database: controle_pessoal
+  database: heroku
   username: postgres
   password: postgres
 
@@ -31,7 +31,7 @@ test:
 production:
   adapter: postgresql
   encoding: utf-8
-  database: controle_pessoal
+  database: heroku
   username: postgres
   password: postgres
 #development:

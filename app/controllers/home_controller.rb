@@ -14,7 +14,17 @@ class HomeController < ApplicationController
       dias = []
       despesas = []
       receitas = []
-      for i in Date.today.days_ago(15)..Date.today
+
+      hoje = Date.today
+      if hoje.day < 15
+        inicial = hoje.beginning_of_month
+        final = Date.new(hoje.year, hoje.month, 15)
+      else
+        final = hoje
+        inicial = hoje.days_ago(15)
+      end
+
+      for i in inicial..final
          dias << i.day 
          despesas << lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
          receitas << lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
@@ -32,8 +42,6 @@ class HomeController < ApplicationController
       
       #RELATORIO 2 - PIE
       #RELATORIO DE GASTOS POR CATEGORIA
-      lancamentos = Lancamento.mes_atual(Date.today, current_user.id)      
-      
       @lancamentos_pizza = []
       lancamentos.select("categoria_id, sum(valor) as valor").despesa.group("categoria_id").each do |l|
          percentual = ((l.valor) / @totais[2])

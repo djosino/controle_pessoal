@@ -22,7 +22,10 @@ class RotinasController < ApplicationController
 
   # GET /rotinas/1/edit
    def edit
-      @sub_categorias = @lancamento.sub_categoria  
+      @sub_categorias = []
+      if @rotina.sub_categoria 
+        @sub_categorias << @rotina.sub_categoria 
+      end  
    end
 
   # POST /rotinas

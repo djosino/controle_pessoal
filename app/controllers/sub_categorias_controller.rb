@@ -62,7 +62,11 @@ class SubCategoriasController < ApplicationController
   # DELETE /sub_categorias/1
   # DELETE /sub_categorias/1.json
   def destroy
-    @sub_categoria.destroy
+    begin
+      @sub_categoria.destroy
+    rescue ActiveRecord::DeleteRestrictionError 
+      flash[:error] = "Não é possível remover sub-categoria que possua lançamentos."
+    end
     respond_to do |format|
       format.html { redirect_to @sub_categoria.categoria }
       format.json { head :no_content }
