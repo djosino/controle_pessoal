@@ -2,18 +2,7 @@ class LancamentosController < ApplicationController
   before_action :set_lancamento, only: [:show, :edit, :update, :destroy]
   before_action :get_selects, only: [:new, :edit, :update, :create]
 
-   def consultas
-      @anos = []
-      for i in 2013..Date.today.year
-         @anos << i
-      end
-   end
-
-   def por_mes_ano
-      data = Date.new(params[:ano].to_i, params[:mes].to_i, 10)
-      @lancamentos = Lancamento.mes_atual(data, current_user.id).order(:data_pagamento => :asc)
-   end
-
+   
    # GET /lancamentos
    # GET /lancamentos.json
    def index

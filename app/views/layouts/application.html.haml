@@ -57,24 +57,24 @@
                 Principal
               %span.divider /
             %li
-              %a{:href => "/lancamentos"}
+              = link_to lancamentos_path do
                 %i.icon-tags
                 Lançamentos
               %span.divider /
             %li.active
-              %a{:href => "/rotinas"}
+              = link_to rotinas_path do
                 %i.icon-book
                 Rotinas
               %span.divider /
             %li.active
-              %a{:href => "/categorias"}
+              = link_to categorias_path do
                 %i.icon-folder-open
                 Categorias
               %span.divider /
             %li.active
-              %a{:href => "/lancamentos/consultas"}
+              = link_to consultas_home_index_path do
                 %i.icon-search
-                Consulta
+                Relatórios
           / Top Fixed Bar: Breadcrumb Right Navigation
           %ul.pull-right
             / Top Fixed Bar: Breadcrumb Theme

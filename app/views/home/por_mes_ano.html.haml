@@ -1,0 +1,87 @@
+.container
+  = flash_message
+  %br
+  .row-fluid
+    .in-lancamento.span3.well.infobox
+      %i.icon-6x.icon-tags
+      .pull-right.text-right
+        Lançamentos
+        %br
+        %b.huge= @totais[0]
+    .in-receita.span3.well.infobox
+      %i.icon-6x.icon-arrow-up
+      .pull-right.text-right
+        Receita
+        %br
+        %b.huge= @totais[1].real.real_contabil
+    .in-despesa.span3.well.infobox
+      %i.icon-6x.icon-arrow-down
+      .pull-right.text-right
+        Despesa
+        %br
+        %b.huge= @totais[2].real.real_contabil
+    .in-saldo.span3.well.infobox
+      %i.icon-6x.icon-bar-chart
+      .pull-right.text-right
+        Saldo
+        %br
+        %b.huge= @totais[3].real.real_contabil
+  .row-fluid
+    .span8
+      .top-bar
+        %h3
+          %i.icon-bar-chart
+          Relatório Mensal
+      .well
+        .tab-content
+          #tab-traffic.tab-pane.active
+            .chart(style='min-height: 200px; margin: 10px 0; width: 100%')
+              - if @chart
+                = high_chart("relatorio1", @chart)
+    .span4
+      .top-bar
+        %h3
+          %i.icon-money
+          Lançamentos Categoria
+      .tab-content
+        #tab-traffic.tab-pane.active
+          .chart(style='min-height: 200px; margin: 0px; width: 100%')
+            - if @chart
+              = high_chart("relatorio2", @chart_pizza) do |c|
+                = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
+                = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
+  .row-fluid
+    .span12
+      = flash_message
+      .top-bar
+        %h3
+          %i.icon-eye-open
+          Lista de Lançamentos
+      .well.no-padding
+        #DataTables_Table_0_wrapper.dataTables_wrapper{:role => "grid"}
+          %table#DataTables_Table_0.data-table.dataTable{"aria-describedby" => "DataTables_Table_0_info"}
+            %thead
+              %tr{:role => "row"}
+                %th Data Pag.
+                %th Data Venc.
+                %th Descrição
+                %th Categoria
+                %th Sub-Categoria
+                %th Tipo Lançamento
+                %th Valor
+                %th Opções
+                %th
+            %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
+              - @lancamentos.each do |lancamento|
+                %tr.gradeA.odd
+                  %td= lancamento.data_pagamento  ? lancamento.data_pagamento.to_s_br    : '--'
+                  %td= lancamento.data_vencimento ? lancamento.data_vencimento.to_s_br   : '--'
+                  %td= lancamento.descricao
+                  %td= (lancamento.categoria       ? lancamento.categoria.descricao       : '--') 
+                  %td= (lancamento.sub_categoria   ? lancamento.sub_categoria.descricao   : '--')
+                  %td= lancamento.tipo_lancamento ? lancamento.tipo_lancamento.descricao : '--'
+                  %td= lancamento.valor.real.real_contabil
+                  %td.icon16
+                    = link_to '', edit_lancamento_path(lancamento), :class => "icon-edit", :title => 'Editar'
+                  %td.icon16.red
+                    = link_to '', lancamento, :method => :delete, :data => { :confirm => 'Tem certeza?' }, :class => "icon-remove", :title => "Deletar"

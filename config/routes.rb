@@ -18,8 +18,6 @@ ControlePessoal::Application.routes.draw do
     collection do
       get :receitas
       get :despesas
-      get :consultas
-      post :por_mes_ano
     end
   end
 
@@ -34,7 +32,12 @@ ControlePessoal::Application.routes.draw do
              }
 
 
-  get "home/index"
+  resources :home, :only => [:index] do
+    collection do
+      get :consultas
+      post :por_mes_ano
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

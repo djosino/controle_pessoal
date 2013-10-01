@@ -1,10 +1,42 @@
 class HomeController < ApplicationController
-  	def index
+
+  def consultas
+      @anos = []
+      for i in 2013..Date.today.year
+         @anos << i
+      end
+   end
+
+   def por_mes_ano
+      @data = Date.new(params[:ano].to_i, params[:mes].to_i, 10)
+      @lancamentos = Lancamento.mes_atual(@data, current_user.id)
+      @inicial = @data.beginning_of_month
+      @final = @data.end_of_month
+      monta_relatorio
+      @lancamentos = Lancamento.mes_atual(@data, current_user.id).order(:data_pagamento => :asc)
+      
+   end
+
+   def index
       @totais = []
-      lancamentos = Lancamento.mes_atual(Date.today, current_user.id)
-      @totais << Lancamento.mes_atual(Date.today, current_user.id).count 
-      @totais << Lancamento.mes_atual(Date.today, current_user.id).receita.sum(:valor).to_f
-      @totais << Lancamento.mes_atual(Date.today, current_user.id).despesa.sum(:valor).to_f
+      @data = Date.today
+      @lancamentos = Lancamento.mes_atual(@data, current_user.id)
+      if @data.day < 15
+        @inicial = @data.beginning_of_month
+        @final = Date.new(@data.year, @data.month, 15)
+      else
+        @final = @data
+        @inicial = @data.days_ago(15)
+      end
+      monta_relatorio
+   end
+
+   private
+   def monta_relatorio
+      @totais = []
+      @totais << Lancamento.mes_atual(@data, current_user.id).count 
+      @totais << Lancamento.mes_atual(@data, current_user.id).receita.sum(:valor).to_f
+      @totais << Lancamento.mes_atual(@data, current_user.id).despesa.sum(:valor).to_f
       @totais << (@totais[1] - @totais[2])
 
       @totais << Lancamento.where("user_id = ?  and data_pagamento::date = current_date",current_user.id).receita.sum(:valor).to_f
@@ -15,19 +47,10 @@ class HomeController < ApplicationController
       despesas = []
       receitas = []
 
-      hoje = Date.today
-      if hoje.day < 15
-        inicial = hoje.beginning_of_month
-        final = Date.new(hoje.year, hoje.month, 15)
-      else
-        final = hoje
-        inicial = hoje.days_ago(15)
-      end
-
-      for i in inicial..final
+      for i in @inicial..@final
          dias << i.day 
-         despesas << lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
-         receitas << lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+         despesas << @lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+         receitas << @lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
       end
 
       @chart = LazyHighCharts::HighChart.new('line') do |f|
@@ -43,7 +66,7 @@ class HomeController < ApplicationController
       #RELATORIO 2 - PIE
       #RELATORIO DE GASTOS POR CATEGORIA
       @lancamentos_pizza = []
-      lancamentos.select("categoria_id, sum(valor) as valor").despesa.group("categoria_id").each do |l|
+      @lancamentos.select("categoria_id, sum(valor) as valor").despesa.group("categoria_id").each do |l|
          percentual = ((l.valor) / @totais[2])
          @lancamentos_pizza << [l.categoria.descricao, percentual.to_f.round(2)]
       end
