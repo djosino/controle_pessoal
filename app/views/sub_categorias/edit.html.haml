@@ -1,7 +1,14 @@
-%h1 Editing sub_categoria
-
-= render 'form'
-
-= link_to 'Show', @sub_categoria
-\|
-= link_to 'Back', sub_categorias_path
+.row-fluid
+  .span5
+    / Forms: Top Bar
+    .top-bar
+      %h3
+        %i.icon-cog
+        Editar Sub-Categoria
+    / / Forms: Top Bar
+    / Forms: Content
+    .well.no-padding
+      = flash_message(@sub_categoria)
+      / Forms: Form
+      / Forms: Normal input field
+      = render 'form'

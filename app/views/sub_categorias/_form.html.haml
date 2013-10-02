@@ -1,19 +1,14 @@
-= form_for @sub_categoria do |f|
-  - if @sub_categoria.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@sub_categoria.errors.count, "error")} prohibited this sub_categoria from being saved:"
-      %ul
-        - @sub_categoria.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :descricao
-    = f.text_field :descricao
-  .field
-    = f.label :categoria
-    = f.text_field :categoria
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions
-    = f.submit 'Save'
+= form_for(@sub_categoria, :html => {:class => "form-horizontal"}) do |f|
+  .control-group
+    %label.control-label{:for => "inputNormal"}
+      Descrição *
+    .controls
+      .input-prepend.input-append
+        %span.add-on.float-left
+          %i.icon-text-width
+        = f.text_field :descricao
+  .form-actions
+    .float-left
+      = link_to "Voltar", @sub_categoria.categoria , :class => "btn"     
+    .float-right
+      = f.submit "Confirmar", :class => "btn btn-primary"
