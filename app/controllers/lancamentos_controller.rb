@@ -64,7 +64,7 @@ class LancamentosController < ApplicationController
     @lancamento.user = current_user
     respond_to do |format|
       if @lancamento.update(lancamento_params)
-        format.html { redirect_to lancamentos_path, notice: 'Lançamento atualizada com sucesso.' }
+        format.html { redirect_to :controller => :home, :action => :por_mes_ano, :mes => @lancamento.data_pagamento.month, :ano => @lancamento.data_pagamento.year, notice: 'Lançamento atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

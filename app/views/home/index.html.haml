@@ -55,7 +55,7 @@
           %i.icon-bar-chart
           Relatório Mensal
 
-      .well
+      .well(style='background: white')
         .span12
           .progress.progress-mini
             .bar{:style => "width: #{@percentual}%;"}
@@ -65,27 +65,9 @@
               - if @chart
                 = high_chart("relatorio1", @chart)
 
-
-          /#tab-server.tab-pane
-          /  .progress.progress-danger.progress-mini
-          /    .bar{:style => "width: 98%;"}
-          /  .alert.alert-error
-          /    %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          /    %i.icon-bolt
-          /    %b Huge Traffic
-          /    Your server has nearly exceeded the bandwidth limits.
-          /  .graph.realtimechart{:style => "padding: 0px;"}
-          /    %canvas.flot-base{:height => "240", :style => "width: 100px; height: 240px;", :width => "100"}
-          /    %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
-        / / Site Traffic: Content
-        / Pie: Top Bar
-        .span4.no-margin.tab-content
-          #tab-traffic.tab-pane.active
-            .chart(style='min-height: 200px; margin: 0px; width: 100%')
-              - if @chart
-                = high_chart("relatorio2", @chart_pizza) do |c|
-                  = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
-                  = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
+        .span4.no-margin
+          #container-highcharts(style=" height: 400px; margin: 0 auto")
+            = my_high_chart(@categorias, @lancamentos_pizza)
 
 
 

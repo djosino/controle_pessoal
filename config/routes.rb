@@ -34,7 +34,7 @@ ControlePessoal::Application.routes.draw do
 
   resources :home, :only => [:index] do
     collection do
-      get :consultas
+      get :consultas, :por_mes_ano
       post :por_mes_ano
     end
   end

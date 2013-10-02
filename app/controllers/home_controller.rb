@@ -52,8 +52,9 @@ class HomeController < ApplicationController
 
       @chart = LazyHighCharts::HighChart.new('line') do |f|
          f.title({ :text=>"Relatório Mensal"})
-         f.options[:xAxis][:categories] = dias 
+         f.options[:xAxis][:categories]   = dias 
          f.options[:yAxis][:title][:text] = "Valores"
+         f.options[:yAxis][:max]          = [despesas.max, receitas.max, saldo.max].max
          f.series(:type=> 'spline', :name => "Saldo", :data => saldo)
          f.series(:type=> 'spline', :name => "Receitas", :data => receitas, :color => "green")
          f.series(:type=> 'spline', :name => "Despesas", :data => despesas, :color => "#B80000")
@@ -63,34 +64,26 @@ class HomeController < ApplicationController
       
       #RELATORIO 2 - PIE
       #RELATORIO DE GASTOS POR CATEGORIA
+      @categorias = []
       @lancamentos_pizza = []
       @lancamentos.select("categoria_id, sum(valor) as valor").despesa.group("categoria_id").each do |l|
-         percentual = ((l.valor) / @totais[2])
-         @lancamentos_pizza << [l.categoria.descricao, percentual.to_f.round(2)]
+         @categorias << l.categoria.descricao
+
+         lancamentos_sub = @lancamentos.select("sub_categoria_id, sum(valor) as valor").despesa.where(["categoria_id = ?", l.categoria_id]).group("sub_categoria_id")
+         percentual = ((l.valor*100)/ @totais[2]).to_f.round(2)
+
+         sub_categorias = []
+         lancamentos_sub.collect{|x| x.sub_categoria ? sub_categorias <<  x.sub_categoria.descricao : "" }
+         sub_categorias << l.categoria.descricao if sub_categorias.blank?
+
+         @lancamentos_pizza << { :categoria => l.categoria.descricao, 
+                                 :y => percentual, 
+                                 :subcategoria => sub_categorias,
+                                 :data => lancamentos_sub.collect{|d| (d.valor*100/@totais[2]).round(2)}
+                               }
       end
       
-
-      @chart_pizza = LazyHighCharts::HighChart.new('pie') do |f|
-            f.chart({:defaultSeriesType=>"pie" , :margin=> [20, 60, 20, 60]} )
-            series = {
-                     :type=> 'pie',
-                     :name=> 'Browser share',
-                     :data=> @lancamentos_pizza
-            }
-            f.series(series)
-            f.options[:title][:text] = "Lançamentos por Categoria"
-            f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
-            f.plot_options(:pie=>{
-              :allowPointSelect=>true, 
-              :cursor=>"pointer" , 
-              :dataLabels=>{
-                :enabled=>true,
-                :color=>"black",
-                :style=>{
-                  :font=>"13px Trebuchet MS, Verdana, sans-serif"
-                }
-              }
-            })
-      end
+   
    end
 end
+

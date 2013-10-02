@@ -27,29 +27,27 @@
         %br
         %b.huge= @totais[3].real.real_contabil
   .row-fluid
-    .span8
+    / Site Traffic: Box
+    .span12
+      / Site Traffic: Top Bar
       .top-bar
         %h3
           %i.icon-bar-chart
           Relatório Mensal
-      .well
-        .tab-content
+
+      .well(style='background: white')
+        .span12
+          .progress.progress-mini
+            .bar{:style => "width: #{@percentual}%;"}
+        .span8.no-margin.tab-content
           #tab-traffic.tab-pane.active
             .chart(style='min-height: 200px; margin: 10px 0; width: 100%')
               - if @chart
                 = high_chart("relatorio1", @chart)
-    .span4
-      .top-bar
-        %h3
-          %i.icon-money
-          Lançamentos Categoria
-      .tab-content
-        #tab-traffic.tab-pane.active
-          .chart(style='min-height: 200px; margin: 0px; width: 100%')
-            - if @chart
-              = high_chart("relatorio2", @chart_pizza) do |c|
-                = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
-                = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
+
+        .span4.no-margin
+          #container-highcharts(style=" height: 400px; margin: 0 auto")
+            = my_high_chart(@categorias, @lancamentos_pizza)
   .row-fluid
     .span12
       = flash_message
