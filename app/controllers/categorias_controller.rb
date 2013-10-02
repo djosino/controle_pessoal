@@ -68,7 +68,11 @@ class CategoriasController < ApplicationController
   # DELETE /categorias/1
   # DELETE /categorias/1.json
   def destroy
-    @categoria.destroy
+    begin
+      @categoria.destroy
+    rescue ActiveRecord::DeleteRestrictionError 
+      flash[:error] = "Não é possível remover categoria que possua lançamentos."
+    end    
     respond_to do |format|
       format.html { redirect_to categorias_url }
       format.json { head :no_content }

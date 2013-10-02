@@ -44,3 +44,7 @@ a.in-saldo:hover{
 .infobox:hover{
    background-color: #F9F9F9;
 };
+
+.btn_size {
+   width: 20px;
+}

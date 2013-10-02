@@ -39,6 +39,9 @@
             %b Pessoal
           / / Logo / Brand Name
           / User Navigation
+          .text-right.btn_size
+            %a.qck-button{"data-original-title" => "Adicionar Lançamento", :href => "/lancamentos/new"}
+              %i.icon-plus
           %ul.nav.pull-right
             = render 'partials/notifications'
             / / User Navigation: User
@@ -133,3 +136,6 @@
   /  $(".dropdown").bind("click", function(){ 
   /    $(this).className +=' open';
   /  });
+
+
+
