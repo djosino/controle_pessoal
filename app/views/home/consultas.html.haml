@@ -20,7 +20,7 @@
         .control-group
           %label.control-label Ano *
           .controls
-            = select_tag :ano, options_for_select(@anos)
+            = select_tag :ano, options_for_select(anos)
         .form-actions     
           .float-right
             = submit_tag "Confirmar", :class => "btn btn-primary"

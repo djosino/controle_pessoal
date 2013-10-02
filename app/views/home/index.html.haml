@@ -48,7 +48,7 @@
   / Site Traffic and Pie
   .row-fluid
     / Site Traffic: Box
-    .span8
+    .span12
       / Site Traffic: Top Bar
       .top-bar
         %h3
@@ -56,10 +56,11 @@
           Relatório Mensal
 
       .well
-        .tab-content
+        .span12
+          .progress.progress-mini
+            .bar{:style => "width: #{@percentual}%;"}
+        .span8.no-margin.tab-content
           #tab-traffic.tab-pane.active
-            .progress.progress-mini
-              .bar{:style => "width: #{@percentual}%;"}
             .chart(style='min-height: 200px; margin: 10px 0; width: 100%')
               - if @chart
                 = high_chart("relatorio1", @chart)
@@ -78,20 +79,13 @@
           /    %canvas.flot-overlay{:height => "240", :style => "width: 100px; height: 240px; position: absolute; left: 0px; top: 0px;", :width => "100"}
         / / Site Traffic: Content
         / Pie: Top Bar
-    .span4
-      .top-bar
-        %h3
-          %i.icon-money
-          Lançamentos Categoria
-      / / Pie: Top Bar
-      / Pie: Content
-      .tab-content
-        #tab-traffic.tab-pane.active
-          .chart(style='min-height: 200px; margin: 0px; width: 100%')
-            - if @chart
-              = high_chart("relatorio2", @chart_pizza) do |c|
-                = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
-                = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
+        .span4.no-margin.tab-content
+          #tab-traffic.tab-pane.active
+            .chart(style='min-height: 200px; margin: 0px; width: 100%')
+              - if @chart
+                = high_chart("relatorio2", @chart_pizza) do |c|
+                  = raw "options.tooltip.formatter = function() {return '<b>'+ this.point.name +'</b>: '+ 100*this.y +' %';}"
+                  = raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"
 
 
 

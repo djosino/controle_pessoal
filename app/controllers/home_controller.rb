@@ -1,10 +1,6 @@
 class HomeController < ApplicationController
 
-  def consultas
-      @anos = []
-      for i in 2013..Date.today.year
-         @anos << i
-      end
+   def consultas
    end
 
    def por_mes_ano
@@ -13,8 +9,7 @@ class HomeController < ApplicationController
       @inicial = @data.beginning_of_month
       @final = @data.end_of_month
       monta_relatorio
-      @lancamentos = Lancamento.mes_atual(@data, current_user.id).order(:data_pagamento => :asc)
-      
+      @lancamentos = Lancamento.mes_atual(@data, current_user.id).order(:data_pagamento => :asc)   
    end
 
    def index
@@ -46,19 +41,22 @@ class HomeController < ApplicationController
       dias = []
       despesas = []
       receitas = []
+      saldo = []
 
       for i in @inicial..@final
          dias << i.day 
          despesas << @lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
          receitas << @lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum
+         saldo    << receitas.sum -  despesas.sum
       end
 
       @chart = LazyHighCharts::HighChart.new('line') do |f|
          f.title({ :text=>"Relatório Mensal"})
          f.options[:xAxis][:categories] = dias 
          f.options[:yAxis][:title][:text] = "Valores"
-         f.series(:type=> 'column', :name => "Receitas", :data => receitas)
-         f.series(:type=> 'column', :name => "Despesas", :data => despesas, :color => "#B80000")
+         f.series(:type=> 'spline', :name => "Saldo", :data => saldo)
+         f.series(:type=> 'spline', :name => "Receitas", :data => receitas, :color => "green")
+         f.series(:type=> 'spline', :name => "Despesas", :data => despesas, :color => "#B80000")
       end
 
       @percentual = Time.percentual_dia

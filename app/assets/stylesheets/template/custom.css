@@ -1,5 +1,5 @@
 .no-margin{
-   margin: 0px;
+   margin: 0px !important; 
 }
 .icon16 [class^="icon-"] {
    font-size: 16px;
