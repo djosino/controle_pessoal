@@ -69,7 +69,7 @@ class HomeController < ApplicationController
       @lancamentos.select("categoria_id, sum(valor) as valor").despesa.group("categoria_id").each do |l|
          @categorias << l.categoria.descricao
 
-         lancamentos_sub = @lancamentos.select("sub_categoria_id, sum(valor) as valor").despesa.where(["categoria_id = ?", l.categoria_id]).group("sub_categoria_id")
+         lancamentos_sub = @lancamentos.select("sub_categoria_id, sum(valor) as valor").despesa.where(["categoria_id = ?", l.categoria_id]).group("sub_categoria_id").order('1 asc')
          percentual = ((l.valor*100)/ @totais[2]).to_f.round(2)
 
          sub_categorias = []
