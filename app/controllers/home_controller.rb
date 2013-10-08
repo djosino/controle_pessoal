@@ -47,7 +47,7 @@ class HomeController < ApplicationController
          dias << i.day 
          despesas << @lancamentos.despesa.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum.round(2)
          receitas << @lancamentos.receita.collect{|l| l.data_pagamento == i ? l.valor : 0.0 }.sum.round(2)
-         saldo    << receitas.sum -  despesas.sum
+         saldo    << (receitas.sum - despesas.sum).round(2)
       end
 
       @chart = LazyHighCharts::HighChart.new('line') do |f|
