@@ -75,9 +75,9 @@ class HomeController < ApplicationController
          sub_categorias = []
          lancamentos_sub.each do |x| 
             if x.sub_categoria 
-               sub_categorias << x.sub_categoria.descricao + x.valor.real
+               sub_categorias << x.sub_categoria.descricao + x.valor.real.to_s
             else 
-               sub_categorias << l.categoria.descricao + x.valor.real
+               sub_categorias << l.categoria.descricao     + x.valor.real.to_s
             end
          end
 
