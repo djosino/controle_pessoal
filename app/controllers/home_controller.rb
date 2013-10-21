@@ -16,12 +16,12 @@ class HomeController < ApplicationController
       @totais = []
       @data = Date.today
       @lancamentos = Lancamento.mes_atual(@data, current_user.id)
-      if @data.day < 15
+      if @data.day < 20
         @inicial = @data.beginning_of_month
-        @final = Date.new(@data.year, @data.month, 15)
+        @final = Date.new(@data.year, @data.month, 20)
       else
         @final = @data
-        @inicial = @data.days_ago(15)
+        @inicial = @data.days_ago(20)
       end
       monta_relatorio
    end
@@ -73,8 +73,13 @@ class HomeController < ApplicationController
          percentual = ((l.valor*100)/ @totais[2]).to_f.round(2)
 
          sub_categorias = []
-         lancamentos_sub.collect{|x| x.sub_categoria ? sub_categorias <<  x.sub_categoria.descricao : "" }
-         sub_categorias << l.categoria.descricao if sub_categorias.blank?
+         lancamentos_sub.each do |x| 
+            if x.sub_categoria 
+               sub_categorias << x.sub_categoria.descricao + x.valor.real
+            else 
+               sub_categorias << l.categoria.descricao + x.valor.real
+            end
+         end
 
          @lancamentos_pizza << { :categoria => l.categoria.descricao, 
                                  :y => percentual, 
